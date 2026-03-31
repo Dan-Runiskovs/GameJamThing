@@ -13,16 +13,6 @@ public class BaseStand : MonoBehaviour
     [Header("Tech")]
     [SerializeField] Collider _checkCollider;
 
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
-
-
     public void IncrementItem() 
     {
         _itemAmount++;

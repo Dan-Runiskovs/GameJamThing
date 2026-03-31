@@ -8,6 +8,12 @@ public class ItemScript : MonoBehaviour
     private Collider _col;
 
     private bool _isValid = true;
+
+    public bool isValid
+    {
+        get { return _isValid; }
+    }
+
     [SerializeField] private Material _invalidMaterial;
 
     public enum ItemTypes
