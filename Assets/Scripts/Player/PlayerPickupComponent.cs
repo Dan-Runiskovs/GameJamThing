@@ -25,7 +25,7 @@ public class PlayerPickupComponent : MonoBehaviour
 
         _playerActionMap.FindAction("Interact").started += context => TryInteract();
         _playerActionMap.FindAction("Throw").started += context => TryThrow();
-        _playerActionMap.FindAction("Place").started += context => TryPlace();
+        _playerActionMap.FindAction("Use").started += context => TryUse();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,13 +50,6 @@ public class PlayerPickupComponent : MonoBehaviour
 
         if (closest == null) return;
 
-        // Handle box interaction first
-        if (closest.GetItemType() == ItemScript.ItemTypes.Box && _heldItem == null)
-        {
-            closest.HandleUnboxing();
-            return;
-        }
-
         if (closest != null && _heldItem == null)       //Picks up closest Item
         {
             Debug.Log("Trying to pick up");
@@ -78,9 +71,15 @@ public class PlayerPickupComponent : MonoBehaviour
 
     }
 
-    private void TryPlace()
+    private void TryUse()
     {
+        ItemScript closest = GetClosestItem();
 
+        if (closest.GetItemType() == ItemScript.ItemTypes.Box && _heldItem == null)
+        {
+            closest.HandleUnboxing();
+            return;
+        }
     }
 
     #region Items
