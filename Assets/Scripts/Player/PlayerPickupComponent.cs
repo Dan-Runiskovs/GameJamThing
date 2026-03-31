@@ -51,7 +51,7 @@ public class PlayerPickupComponent : MonoBehaviour
         if (closest == null) return;
 
         // Handle box interaction first
-        if (closest.GetItemType() == ItemScript.ItemTypes.Box)
+        if (closest.GetItemType() == ItemScript.ItemTypes.Box && _heldItem == null)
         {
             closest.HandleUnboxing();
             return;
