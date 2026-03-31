@@ -42,14 +42,14 @@ public class PlayerPickupComponent : MonoBehaviour
 
     private void TryInteract()
     {
-        ItemScript closest = GetClosestItem();
-
-        if (closest == null && _heldItem != null)
+        if (_heldItem != null)
         {
             Debug.Log("Dropping");
             DropHeldItem();
             return;
         }
+
+        ItemScript closest = GetClosestItem();
 
         if (closest == null) return;
 
@@ -58,12 +58,14 @@ public class PlayerPickupComponent : MonoBehaviour
             Debug.Log("Trying to pick up");
             PickUpItem(closest);
         }
+        /*
         else if (closest != null && _heldItem != null)  //Swaps out held item and closest item
         {
             Debug.Log("Swapping");
             DropHeldItem(closest.transform.position);
             PickUpItem(closest);
         }
+        */
     }
 
     private void TryThrow()
@@ -110,11 +112,6 @@ public class PlayerPickupComponent : MonoBehaviour
             _heldItem = null;
             _heldItemScript = null;
         }
-
-
-
-
-
     }
 
     public void SetClosestStand(BaseStand stand) 

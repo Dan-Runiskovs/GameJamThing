@@ -31,18 +31,4 @@ public class GridObject : MonoBehaviour
 
         return toSpawn;
     }
-
-    
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 }

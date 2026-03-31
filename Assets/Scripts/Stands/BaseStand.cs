@@ -13,8 +13,6 @@ public class BaseStand : MonoBehaviour
     [Header("Tech")]
     [SerializeField] Collider _checkCollider;
 
-
-
     void Start()
     {
         
@@ -25,14 +23,7 @@ public class BaseStand : MonoBehaviour
     }
 
 
-    public void PlaceItem() 
-    {
-        _itemActive = false;
-
-
-    }
-
-    public void StartQTE(GameObject playerObject) 
+    public void IncrementItem() 
     {
 
     }
