@@ -103,7 +103,7 @@ public class PlayerPickupComponent : MonoBehaviour
         if (_heldItemScript.ItemType == itemType) 
         {
             Debug.Log("Place Item");
-            _ClosestStand.IncrementItem();
+            _ClosestStand.PlaceItem();
             _heldItemScript.UnCarry(Vector3.zero);
             _heldItem.transform.SetParent(null);
             Destroy(_heldItem);

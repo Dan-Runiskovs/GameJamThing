@@ -7,11 +7,13 @@ public class BaseStand : MonoBehaviour
     [SerializeField] ItemScript.ItemTypes _standItem;
     public ItemScript.ItemTypes StandItemType {  get { return _standItem; } }
 
-    [SerializeField] int _itemAmount;
+    [SerializeField] bool _itemActive;
 
     [Space]
     [Header("Tech")]
     [SerializeField] Collider _checkCollider;
+
+
 
     void Start()
     {
@@ -23,10 +25,18 @@ public class BaseStand : MonoBehaviour
     }
 
 
-    public void IncrementItem() 
+    public void PlaceItem() 
     {
-        _itemAmount++;
+        _itemActive = false;
+
+
     }
+
+    public void StartQTE(GameObject playerObject) 
+    {
+
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
