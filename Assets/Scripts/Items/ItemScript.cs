@@ -17,6 +17,9 @@ public class ItemScript : MonoBehaviour
     [Tooltip("The type of item.")]
     [SerializeField] private ItemTypes Type;
 
+    public ItemTypes ItemType {  get { return Type; } }
+
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -58,4 +61,6 @@ public class ItemScript : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    
 }

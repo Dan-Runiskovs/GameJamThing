@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +15,8 @@ public class PlayerPickupComponent : MonoBehaviour
     //Current held Item
     private GameObject _heldItem;
     private ItemScript _heldItemScript;
+
+    private BaseStand _ClosestStand;
 
     [Header("Throw")]
     [SerializeField] private float _throwStrength = 250f;
@@ -75,12 +78,66 @@ public class PlayerPickupComponent : MonoBehaviour
     {
         ItemScript closest = GetClosestItem();
 
-        if (closest.GetItemType() == ItemScript.ItemTypes.Box && _heldItem == null)
+        if (closest != null && closest.GetItemType() == ItemScript.ItemTypes.Box && _heldItem == null)
         {
             closest.HandleUnboxing();
             return;
         }
+
+        TryPlace();
+
     }
+
+    private void TryPlace() 
+    {
+        if (_ClosestStand == null || _heldItem == null || _heldItemScript == null) return;
+
+        if ((_ClosestStand.transform.position - transform.position).sqrMagnitude > 100)
+        {
+            _ClosestStand = null;
+            return;
+        } //Distance check incase of failure to reset
+
+        var itemType = _ClosestStand.StandItemType;
+
+        if (_heldItemScript.ItemType == itemType) 
+        {
+            Debug.Log("Place Item");
+            _ClosestStand.IncrementItem();
+            _heldItemScript.UnCarry(Vector3.zero);
+            _heldItem.transform.SetParent(null);
+            Destroy(_heldItem);
+            _heldItem = null;
+            _heldItemScript = null;
+        }
+
+
+
+
+
+    }
+
+    public void SetClosestStand(BaseStand stand) 
+    {
+
+        if (stand == null) Debug.Log("Setting closest stand to null can be dangerous! Use RemoveClosestStand");
+        
+        if (_ClosestStand != null)
+        {
+
+            if (Vector3.Distance(transform.position, stand.transform.position) >= 
+                Vector3.Distance(_ClosestStand.transform.position, stand.transform.position)) return;
+
+        }
+
+        _ClosestStand = stand;
+    }
+
+    public void RemoveClosestStand(BaseStand stand) 
+    {
+        if (_ClosestStand == stand) _ClosestStand = null;
+    }
+
 
     #region Items
     //Picks up the given item
