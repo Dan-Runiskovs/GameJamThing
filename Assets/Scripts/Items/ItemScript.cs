@@ -50,5 +50,12 @@ public class ItemScript : MonoBehaviour
     public void HandleUnboxing()
     {
         Debug.Log("Unboxing...");
+
+        GridObject gridObject = GetComponent<GridObject>();
+        GameObject boxedItem = gridObject?.HandleUnboxing();
+
+        Instantiate(boxedItem, transform.position, transform.rotation);
+
+        Destroy(gameObject);
     }
 }

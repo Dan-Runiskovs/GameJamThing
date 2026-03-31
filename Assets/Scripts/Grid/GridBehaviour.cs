@@ -23,7 +23,7 @@ public class GridBehaviour : MonoBehaviour
 
 
 
-    [SerializeField]   private GridObject[] _Grid;
+    [SerializeField]  private GridObject[] _Grid;
     [SerializeField]  private List<GridObject> _ExistingGridObjects = new List<GridObject>();
 
 
@@ -32,6 +32,9 @@ public class GridBehaviour : MonoBehaviour
     {
         _Grid = new GridObject[_Colums * _Rows]; //Create new Grid
         transform.localScale = new Vector3(_Width, 1f, _Height);
+
+        if (_ObjectsCount > _Grid.Length) throw new Exception("Object Count higher than gridsize! U stupid or smth?");
+
         PlaceObjects();
     }
 
@@ -69,13 +72,14 @@ public class GridBehaviour : MonoBehaviour
 
                 Vector2 gridPos = GetPos(randIndex);
                 Vector3 goPos = transform.position;
-                goPos.x -= _Width / 2f;
-                goPos.z -= _Height / 2f;
+                goPos.x -= _Width / 2f - 0.5f;
+                goPos.z -= _Height / 2f - 0.5f;
                 Vector3 pos = new Vector3(gridPos.x*tileWidth+goPos.x,goPos.y, gridPos.y * tileHeight+goPos.z);
                 GridObject gobject = Instantiate<GameObject>(_GridObjectPrefab, pos, transform.rotation).GetComponent<GridObject>();
                 _Grid[randIndex] = gobject;
                 _ExistingGridObjects.Add(gobject);
                 gobject.Index = randIndex;
+                gobject.SetGridObject(this);
                 amountPlaced++;
             }
 
@@ -83,6 +87,11 @@ public class GridBehaviour : MonoBehaviour
 
         }
         
+    }
+
+    public void RemoveGridObject(int index) 
+    {
+        _Grid[index] = null;
     }
 
 }
