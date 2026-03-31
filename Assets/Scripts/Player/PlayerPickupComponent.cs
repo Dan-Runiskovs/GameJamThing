@@ -72,6 +72,9 @@ public class PlayerPickupComponent : MonoBehaviour
 
     private void TryThrow()
     {
+        if (_heldItem == null) return;
+
+        DropHeldItem(default, transform.forward * _throwStrength);
 
     }
 
