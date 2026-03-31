@@ -26,7 +26,7 @@ public class GridObject : MonoBehaviour
 
     }
 
-
+    
 
     void Start()
     {
