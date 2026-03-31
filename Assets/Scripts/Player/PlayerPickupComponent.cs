@@ -106,6 +106,7 @@ public class PlayerPickupComponent : MonoBehaviour
         {
             Debug.Log("Place Item");
             _ClosestStand.PlaceItem();
+            _ClosestStand.StartQTE(transform.parent.gameObject);
             _heldItemScript.UnCarry(Vector3.zero);
             _heldItem.transform.SetParent(null);
             Destroy(_heldItem);

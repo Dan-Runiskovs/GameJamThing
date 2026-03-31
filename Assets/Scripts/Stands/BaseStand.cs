@@ -1,7 +1,16 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class BaseStand : MonoBehaviour
 {
+    public enum StandType
+    {
+        Balloon,
+        Cake,
+        Pinata,
+    }
+
+
 
     [Header("Stand")]
     [SerializeField] ItemScript.ItemTypes _standItem;
@@ -13,6 +22,9 @@ public class BaseStand : MonoBehaviour
     [Header("Tech")]
     [SerializeField] Collider _checkCollider;
 
+
+
+
     void Start()
     {
         
@@ -23,8 +35,19 @@ public class BaseStand : MonoBehaviour
     }
 
 
-    public void IncrementItem() 
+    public void PlaceItem() 
     {
+        _itemActive = false;
+
+
+    }
+
+    public void StartQTE(GameObject playerObject) 
+    {
+        playerObject?.GetComponent<PlayerController>().EnableMovement(false);
+        Debug.Log("QTE");
+
+
 
     }
 
@@ -51,5 +74,19 @@ public class BaseStand : MonoBehaviour
         {
             pickupComp.RemoveClosestStand(this);
         }
+
+
+    }
+
+    public void OnChildTriggerEnter(Collider other) 
+    {
+
+
+
+
+    }
+
+    public void OnChildTriggerExit(Collider other)
+    {
     }
 }

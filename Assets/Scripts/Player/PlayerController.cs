@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Final direction the player will move towards.")]
     private Vector3 _moveDirection;
 
+
+    private bool _MovementEnabled = true;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -81,6 +83,8 @@ public class PlayerController : MonoBehaviour
     //Handles the player movement
     private void HandleMoving()
     {
+
+        if (!_MovementEnabled) return;
         float acceleration = _moveAcceleration;
         //When a player stops moving, they don't slide as much
         if (_moveInputDirection.magnitude < _minMove)
@@ -99,4 +103,6 @@ public class PlayerController : MonoBehaviour
 
         _rb.MovePosition(_rb.position + movement);
     }
+
+    public void EnableMovement(bool enabled) { _MovementEnabled = enabled; }
 }
