@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemScript : MonoBehaviour
@@ -6,18 +7,23 @@ public class ItemScript : MonoBehaviour
     private Rigidbody _rb;
     private Collider _col;
 
+    private bool _isValid = true;
+    [SerializeField] private Material _invalidMaterial;
+
     public enum ItemTypes
     {
         Box,        // Exceptional
         Balloon,
-        Cake
+        Cake,
+        Pinata,
+        GlitterBomb
         // whatever
     }
 
     [Tooltip("The type of item.")]
     [SerializeField] private ItemTypes Type;
 
-    public ItemTypes ItemType {  get { return Type; } }
+    public ItemTypes ItemType { get { return Type; } }
 
 
     private void Start()
@@ -62,5 +68,13 @@ public class ItemScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+    public void Invalidate()
+    {
+        foreach (var part in this.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (part == null) continue;
+
+            part.material = _invalidMaterial;
+        }
+    }
 }
