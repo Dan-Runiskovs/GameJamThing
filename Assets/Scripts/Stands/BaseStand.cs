@@ -14,13 +14,12 @@ public class BaseStand : MonoBehaviour
 
     [Header("Stand")]
     [SerializeField] ItemScript.ItemTypes _standItem;
+    [SerializeField] QuickTimeEventBase _QTE;
     public ItemScript.ItemTypes StandItemType {  get { return _standItem; } }
 
     [SerializeField] bool _itemActive;
 
-    [Space]
-    [Header("Tech")]
-    [SerializeField] Collider _checkCollider;
+
 
 
 
@@ -46,6 +45,7 @@ public class BaseStand : MonoBehaviour
     {
         playerObject?.GetComponent<PlayerController>().EnableMovement(false);
         Debug.Log("QTE");
+        _QTE?.StartEvent(playerObject);
 
 
 
