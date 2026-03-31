@@ -41,6 +41,15 @@ public class PlayerPickupComponent : MonoBehaviour
     {
         ItemScript closest = GetClosestItem();
 
+        if (closest == null && _heldItem != null)
+        {
+            Debug.Log("Dropping");
+            DropHeldItem();
+            return;
+        }
+
+        if (closest == null) return;
+
         // Handle box interaction first
         if (closest.GetItemType() == ItemScript.ItemTypes.Box)
         {
@@ -58,11 +67,6 @@ public class PlayerPickupComponent : MonoBehaviour
             Debug.Log("Swapping");
             DropHeldItem(closest.transform.position);
             PickUpItem(closest);
-        }
-        else if (closest == null && _heldItem != null)  //Drops held item
-        {
-            Debug.Log("Dropping");
-            DropHeldItem();
         }
     }
 
