@@ -32,7 +32,7 @@ public class GridObject : MonoBehaviour
         return toSpawn;
     }
 
-
+    
 
     void Start()
     {

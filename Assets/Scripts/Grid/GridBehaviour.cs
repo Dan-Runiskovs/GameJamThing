@@ -12,9 +12,8 @@ public class GridBehaviour : MonoBehaviour
     [SerializeField] private int _Rows;
 
 
-    [Space]
-    [SerializeField] private float _Width;
-    [SerializeField] private float _Height;
+    private float _Width;
+    private float _Height;
 
     [Space]
     [SerializeField] GameObject _GridObjectPrefab;
@@ -31,7 +30,9 @@ public class GridBehaviour : MonoBehaviour
     void Start()
     {
         _Grid = new GridObject[_Colums * _Rows]; //Create new Grid
-        transform.localScale = new Vector3(_Width, 1f, _Height);
+
+        _Width = transform.localScale.x;
+        _Height = transform.localScale.z;
 
         if (_ObjectsCount > _Grid.Length) throw new Exception("Object Count higher than gridsize! U stupid or smth?");
 
@@ -58,6 +59,12 @@ public class GridBehaviour : MonoBehaviour
     {
         int amountPlaced = 0;
         int failer = 0;
+        float tileHeight = _Height / _Rows;
+        float tileWidth = _Width / _Colums;
+        //Size Check DEBUG
+        if (_GridObjectPrefab.transform.localScale.x > tileWidth || _GridObjectPrefab.transform.localScale.z > tileHeight)
+            Debug.Log("WARNING: Boxes are too big!");
+
 
         while (amountPlaced < _ObjectsCount) 
         {
@@ -67,14 +74,17 @@ public class GridBehaviour : MonoBehaviour
             if (failer > 1000) throw new Exception("Place Objects endless loop"); //Debug 
             if (_Grid[randIndex] == null) 
             {
-                float tileHeight = _Height / _Rows;
-                float tileWidth = _Width / _Colums;
+
+
+               
+
+
 
                 Vector2 gridPos = GetPos(randIndex);
                 Vector3 goPos = transform.position;
                 goPos.x -= _Width / 2f - 0.5f;
                 goPos.z -= _Height / 2f - 0.5f;
-                Vector3 pos = new Vector3(gridPos.x*tileWidth+goPos.x,goPos.y, gridPos.y * tileHeight+goPos.z);
+                Vector3 pos = new Vector3(gridPos.x*tileWidth+goPos.x,goPos.y+1f, gridPos.y * tileHeight+goPos.z);
                 GridObject gobject = Instantiate<GameObject>(_GridObjectPrefab, pos, transform.rotation).GetComponent<GridObject>();
                 _Grid[randIndex] = gobject;
                 _ExistingGridObjects.Add(gobject);
