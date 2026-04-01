@@ -413,8 +413,8 @@ Transform:
   m_GameObject: {fileID: 4873359132508195896}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.050002206, y: -7.1400003, z: -17.1}
-  m_LocalScale: {x: 13.578249, y: 2.5, z: 23.087282}
+  m_LocalPosition: {x: -0.050002206, y: -7.1400003, z: -18.04}
+  m_LocalScale: {x: 13.578249, y: 2.5, z: 20.576632}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 777156927687362709}
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridBehaviour
   _Colums: 5
-  _Rows: 10
+  _Rows: 8
   _GridObjectPrefab: {fileID: 8896780164430495609, guid: ce04bd5718aa24b43a8e3cb3fd893bc7, type: 3}
   _ObjectsCount: 2
   _Grid: []

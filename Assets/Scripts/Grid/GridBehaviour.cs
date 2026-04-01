@@ -115,7 +115,10 @@ public class GridBehaviour : MonoBehaviour
         bool BoxesLeft = false;
         foreach(GridObject obj in _ExistingGridObjects) 
         {
-            if(_Collider.bounds.Contains(obj.transform.position)) {
+
+            if (obj == null) continue;
+
+            if (_Collider.bounds.Contains(obj.transform.position)) {
                 BoxesLeft = true;
                 break;
             }
