@@ -57,7 +57,17 @@ public class KidBehaviour : MonoBehaviour
 
         _happiness -= _happinessLossPS * Time.deltaTime;
 
-        if(_happiness <= 0.0f) MakeSad();
+        if(_happiness <= 50.0f) RollSadness();
+    }
+
+    private void RollSadness()
+    {
+        float sadPercent = 100.0f - _happiness;
+        float rand = Random.Range(0.0f, 100.0f);
+        if(rand <= sadPercent)
+        {
+            MakeSad();
+        }
     }
 
     private void MakeSad()

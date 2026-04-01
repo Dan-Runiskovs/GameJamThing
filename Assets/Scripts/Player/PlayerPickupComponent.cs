@@ -109,6 +109,7 @@ public class PlayerPickupComponent : MonoBehaviour
 
     private void TryPlace() 
     {
+        if (!_heldItemScript.isValid) return;
         if (_ClosestStand == null || _heldItem == null || _heldItemScript == null) return;
 
         if ((_ClosestStand.transform.position - transform.position).sqrMagnitude > 100)
