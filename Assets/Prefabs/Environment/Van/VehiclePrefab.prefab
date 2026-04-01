@@ -388,7 +388,8 @@ MonoBehaviour:
   _audioSource: {fileID: 8732661635467362855}
   _audioSourceBrake: {fileID: -9072247288864083615}
   _StartaudioClip: {fileID: 8300000, guid: 53744439e542a2b439b5eccb64389535, type: 3}
-  _brakeaudioClip: {fileID: 8300000, guid: 5f699824a96d8c6468f20043fa39c2cd, type: 3}
+  _brakeaudioClip: {fileID: 8300000, guid: 4cafa93b7c63abf4d8e9cf50bae20193, type: 3}
+  _driveAwayaudioClip: {fileID: 8300000, guid: 496c70e3b54719542be837963fa43146, type: 3}
   phase: 0
 --- !u!82 &8732661635467362855
 AudioSource:
@@ -411,10 +412,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 111.6
+  MinDistance: 26
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -706,7 +707,7 @@ MonoBehaviour:
   _Colums: 5
   _Rows: 8
   _GridObjectPrefab: {fileID: 8896780164430495609, guid: ce04bd5718aa24b43a8e3cb3fd893bc7, type: 3}
-  _ObjectsCount: 10
+  _ObjectsCount: 1
   _Grid: []
   _ExistingGridObjects: []
 --- !u!33 &5874059387275336457
