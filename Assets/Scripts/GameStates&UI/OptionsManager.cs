@@ -25,8 +25,16 @@ public class OptionsManager : MonoBehaviour
         {
             if (gamepad.startButton.wasPressedThisFrame)
             {
-                TurnSettingsMenuOn();
-                break;
+                if (isActive)
+                {
+                    TurnSettingsMenuOff();
+                    return;
+                }
+                else if(!isActive)
+                {
+                    TurnSettingsMenuOn();
+                    return;
+                }
             }
         }
     }
