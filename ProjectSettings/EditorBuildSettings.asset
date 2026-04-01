@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerSelectionHub.unity
     guid: 268163bd432b5e542add271dd9bd9b9d
+  - enabled: 1
+    path: Assets/Scenes/VanPrototype_Scene.unity
+    guid: 1d2709c801d3664428c3f90dd10d371d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
