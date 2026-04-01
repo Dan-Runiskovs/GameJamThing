@@ -43,6 +43,7 @@ public class KidBehaviour : MonoBehaviour
 
     private bool _carried;
     private Collider _col;
+<<<<<<< Updated upstream
     private BaseStand _ClosestNeedsStand;
     public BaseStand GetNeededStand { get { return _ClosestNeedsStand; } }
 
@@ -54,6 +55,13 @@ public class KidBehaviour : MonoBehaviour
         }
         return null;
     }
+=======
+    [SerializeField] AudioSource EffectsSource;
+    [SerializeField] private AudioClip[] _sadClips;
+    // Random pitch adjustment range.
+    [SerializeField] float LowPitchRange = .95f;
+    [SerializeField] float HighPitchRange = 1.05f;
+>>>>>>> Stashed changes
     private void Awake()
     {
         _nextSadRollTime = Time.time + Random.Range(0f, 1f);
@@ -147,10 +155,9 @@ public class KidBehaviour : MonoBehaviour
         // --- set values ---
         _isSad = false;
         _happiness = extent;
-
         StopAgent(false);
         this.GetComponentInChildren<KidUIController>().StopComplaining();
-
+        RandomSoundEffect(_sadClips);
         // --- Make kid visually happy ---
         foreach (var part in this.GetComponentsInChildren<MeshRenderer>())
         {
@@ -201,5 +208,18 @@ public class KidBehaviour : MonoBehaviour
         agent.isStopped = stop;
         agent.updateRotation = !stop;
         if (stop) agent.velocity = Vector3.zero;
+    }
+    public void RandomSoundEffect(params AudioClip[] clips)
+    {
+        int randomIndex = Random.Range(0, clips.Length);
+        float randomPitch = Random.Range(LowPitchRange, HighPitchRange);
+
+        EffectsSource.pitch = randomPitch;
+        EffectsSource.clip = clips[randomIndex];
+        EffectsSource.Play();
+    }
+    private void StopSound()
+        {
+        EffectsSource.Stop();
     }
 }
