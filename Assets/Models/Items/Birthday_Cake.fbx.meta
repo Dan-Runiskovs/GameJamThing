@@ -3,7 +3,17 @@ guid: b3f112f4c814d2c4dbc9bc40d509b3cb
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_CakeTopCandles
+    second: {fileID: 2100000, guid: a2557807d6ea97648b72a1ea757f0e59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_cake
+    second: {fileID: 2100000, guid: d19d5a63d31e6fd47b6da599369e8591, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

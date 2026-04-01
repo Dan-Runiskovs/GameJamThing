@@ -29,15 +29,28 @@ public class VehicleArrivalScript : MonoBehaviour
     private Quaternion _targetRot;
     private Quaternion _targetLeaveRot = Quaternion.Euler(0f,0f,0f);
     private bool _SoundStarted = false;
+    private bool _SoundStarted2 = false;
+    private bool _SoundStarted3 = false;
+    private bool _SoundStarted4 = false;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioSource _audioSourceBrake;
-
+    [SerializeField] private AudioSource _audioSource3;
+    [SerializeField] private AudioSource _audioSource4;
     [SerializeField] AudioClip _StartaudioClip;
+    [SerializeField] AudioClip _openaudioClip;
+    [SerializeField] AudioClip _closeaudioClip;
+
     [SerializeField] AudioClip _brakeaudioClip;
+    [SerializeField] AudioClip _driveAwayaudioClip;
     public int phase = 0;
     void Start()
     {
         enabled = true;
+        _timer = 0f;
+        _SoundStarted = false;
+        _SoundStarted2 = false;
+        _SoundStarted3 = false;
+        _SoundStarted4 = false;
         phase = 0;
         transform.position = _startPos;
         if (_gridBehaviour != null) _gridBehaviour = GetComponentInChildren<GridBehaviour>();
@@ -67,7 +80,7 @@ public class VehicleArrivalScript : MonoBehaviour
             else
             {
 
-
+               _audioSourceBrake.PlayOneShot(_brakeaudioClip); 
                 phase = 1;
                 _timer = 0f;
             }
@@ -78,26 +91,42 @@ public class VehicleArrivalScript : MonoBehaviour
             _gridBehaviour.transform.parent = null;
             _gridBehaviour?.StartGrid();
             phase = 2;
-
-            _gridBehaviour.transform.SetParent(parent);
+                         _gridBehaviour.transform.SetParent(parent);
 
 
         }
         else if (phase == 2) 
         {
             _ramp.transform.rotation = Quaternion.Lerp(_ramp.transform.rotation, _targetRot, _rampSpeed * Time.deltaTime);
+            if (!_SoundStarted3)
+            {
+                _audioSource3.PlayOneShot(_openaudioClip);
+                _SoundStarted3 = true;
+            }
             if (_ramp.transform.rotation == _targetRot)
             {
                 phase = 3;
+                _audioSource3.Stop();
 
             }
         }
+        
         else if (phase == 4) 
         {
-            
+            if (!_SoundStarted2)
+            {
+                _audioSource.PlayOneShot(_driveAwayaudioClip);
+                _SoundStarted2 = true;
+            }
             _ramp.transform.rotation = Quaternion.Lerp(_ramp.transform.rotation, _targetLeaveRot, _rampSpeed * Time.deltaTime);
+            if (!_SoundStarted4)
+            {
+                _audioSource4.PlayOneShot(_closeaudioClip);
+                _SoundStarted4 = true;
+            }
             if (_ramp.transform.rotation == _targetLeaveRot)
             {
+                _audioSource4.Stop();
                 phase = 5;
                 _timer = 0f;
             }
@@ -106,6 +135,7 @@ public class VehicleArrivalScript : MonoBehaviour
         {
             if (_timer < _arrivalTime)
             {
+   
                 _timer += Time.deltaTime;
                 float percent = _timer / _arrivalTime;
                 transform.position = _endPos + _diffPosLeave * percent;
@@ -113,9 +143,9 @@ public class VehicleArrivalScript : MonoBehaviour
             else
             {
                 phase = 6;
-                _timer = 0f;
+                //_timer = 0f;
                 var GO = Instantiate(_prefab, _startPos, transform.rotation);
-                GO.GetComponent<VehicleArrivalScript>().Start();
+                //GO.GetComponent<VehicleArrivalScript>().Start();
                 Destroy(gameObject);
 
             }

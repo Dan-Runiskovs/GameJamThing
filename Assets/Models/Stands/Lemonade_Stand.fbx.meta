@@ -3,7 +3,27 @@ guid: 43c2cd6b234950c44b205ef2a0d7c225
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Cup
+    second: {fileID: 2100000, guid: 7c42f50d49cc74346a214ab7d40f4198, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Lemon
+    second: {fileID: 2100000, guid: 10e12d378fba0e44185199042de5e7bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_StandLemonadeDetails
+    second: {fileID: 2100000, guid: 240751ad9f2c015408482290212b3db9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Stanlemonade
+    second: {fileID: 2100000, guid: f2faaac85bbf342459f6b72485fe330c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
