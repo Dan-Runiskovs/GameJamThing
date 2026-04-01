@@ -207,28 +207,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 309993086}
-  - component: {fileID: 309993085}
+  - component: {fileID: 309993087}
   m_Layer: 0
-  m_Name: SelectionManager
+  m_Name: Options(Selection)Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &309993085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 309993084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5415b828c674842837d392f22a263f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerReadyManager
-  totalPlayers: 4
-  nextScene: VanPrototype_Scene
 --- !u!4 &309993086
 Transform:
   m_ObjectHideFlags: 0
@@ -244,6 +230,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &309993087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309993084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7633e8751d6a34db39a1ffbc7a0071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OptionsManager
+  totalPlayers: 4
+  nextScene: VanPrototype_Scene
 --- !u!1 &403965546
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,8 +666,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 309993085}
-        m_TargetAssemblyTypeName: PlayerReadyManager, Assembly-CSharp
+      - m_Target: {fileID: 309993087}
+        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: PlayerReady
         m_Mode: 1
         m_Arguments:
@@ -974,8 +974,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 309993085}
-        m_TargetAssemblyTypeName: PlayerReadyManager, Assembly-CSharp
+      - m_Target: {fileID: 309993087}
+        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: PlayerReady
         m_Mode: 1
         m_Arguments:
@@ -1512,8 +1512,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 309993085}
-        m_TargetAssemblyTypeName: PlayerReadyManager, Assembly-CSharp
+      - m_Target: {fileID: 309993087}
+        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: PlayerReady
         m_Mode: 1
         m_Arguments:
@@ -1784,8 +1784,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 309993085}
-        m_TargetAssemblyTypeName: PlayerReadyManager, Assembly-CSharp
+      - m_Target: {fileID: 309993087}
+        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: PlayerReady
         m_Mode: 1
         m_Arguments:
