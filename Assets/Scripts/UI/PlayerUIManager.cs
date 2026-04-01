@@ -15,15 +15,16 @@ public class PlayerUIManager : MonoBehaviour
     [SerializeField] private GameObject _RightArrowUI;
     [Space]
     [SerializeField] private GameObject _XUI;
+    [SerializeField] private GameObject _TriUI;
 
-
+    bool _QTEEnabled = false;
 
     public void EnableQTEUI(QuickTimeEventBase.EventButtons button) 
     {
 
 
         DisableQTEUI();
-
+        _QTEEnabled = true;
 
         switch (button) 
         {
@@ -47,11 +48,19 @@ public class PlayerUIManager : MonoBehaviour
 
     public void EnablePickupIndicator(bool enable) 
     {
+        if (_QTEEnabled) enable = false;
         _XUI.SetActive(enable);
+    }
+
+    public void EnableUseIndicator(bool enable)
+    {
+        if (_QTEEnabled) enable = false;
+        _TriUI.SetActive(enable);
     }
 
     public void DisableQTEUI() 
     {
+        _QTEEnabled = false;
         _UpArrowUI.SetActive(false);
         _DownArrowUI.SetActive(false);
         _LeftArrowUI.SetActive(false);

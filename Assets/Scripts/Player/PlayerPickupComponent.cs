@@ -26,6 +26,8 @@ public class PlayerPickupComponent : MonoBehaviour
     private BaseStand _ClosestStand;
     private BaseStand _ClosestKidStand;
 
+    private PlayerUIManager _playerUIManager;
+
     [Header("Throw")]
     [SerializeField] private float _throwStrength = 250f;
 
@@ -37,12 +39,32 @@ public class PlayerPickupComponent : MonoBehaviour
         _playerActionMap.FindAction("Interact").started += context => TryInteract();
         _playerActionMap.FindAction("Throw").started += context => TryThrow();
         _playerActionMap.FindAction("Use").started += context => TryUse();
+        _playerUIManager = transform.parent.GetComponentInChildren<PlayerUIManager>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
+    }
+
+    private void Update()
+    {
+
+        bool useInd = false;
+        bool pickupInd = false;
+        if (_ClosestStand != null) 
+        {
+            useInd = true;
+        }
+        else if (_itemsInRange.Count > 0 || _kidsInRange.Count >0) 
+        {
+            pickupInd = true;
+            
+        }
+
+        _playerUIManager.EnablePickupIndicator(pickupInd);
+        _playerUIManager.EnableUseIndicator(useInd);
     }
 
     private void OnEnable() => _playerActionMap.Enable();
@@ -194,7 +216,8 @@ public class PlayerPickupComponent : MonoBehaviour
 
     public void RemoveClosestStand(BaseStand stand) 
     {
-        if (_ClosestStand == stand) _ClosestStand = null;
+        if (_ClosestStand == stand) 
+            _ClosestStand = null;
     }
 
     public void RemoveClosestKidStand(BaseStand stand)

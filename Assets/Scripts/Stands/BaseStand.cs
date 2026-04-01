@@ -82,7 +82,6 @@ public class BaseStand : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
 
 
         PlayerPickupComponent pickupComp = other.gameObject.GetComponent<PlayerPickupComponent>();

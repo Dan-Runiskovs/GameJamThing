@@ -27,8 +27,9 @@ public class GridBehaviour : MonoBehaviour
 
 
 
-    void Start()
+    public void StartGrid()
     {
+
         _Grid = new GridObject[_Colums * _Rows]; //Create new Grid
 
         _Width = transform.localScale.x;
