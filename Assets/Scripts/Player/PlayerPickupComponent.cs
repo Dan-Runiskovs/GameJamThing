@@ -130,6 +130,8 @@ public class PlayerPickupComponent : MonoBehaviour
             _heldItem = null;
             _heldItemScript = null;
         }
+
+
     }
 
     public void SetClosestStand(BaseStand stand) 

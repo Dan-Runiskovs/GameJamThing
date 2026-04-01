@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class KidBehaviour : MonoBehaviour
 {
     [Header("Needs")]
-    [SerializeField] private List<BaseStand> _stands = new List<BaseStand>();
+    public List<BaseStand> stands = new List<BaseStand>();
     private ItemScript.ItemTypes _itemWanted;
 
     [Header("Movement")]
@@ -63,8 +63,8 @@ public class KidBehaviour : MonoBehaviour
         _isSad = true;
 
         // --- determine item wanted ---
-        int randIdx = Random.Range(0, _stands.Count);
-        _itemWanted = _stands.ElementAt(randIdx).StandItemType;
+        int randIdx = Random.Range(0, stands.Count);
+        _itemWanted = stands.ElementAt(randIdx).StandItemType;
         Debug.Log("I want: " + _itemWanted.ToString());
 
         // --- Make kid visually sad ---
