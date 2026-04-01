@@ -24,6 +24,7 @@ public class PlayerPickupComponent : MonoBehaviour
     private KidBehaviour _heldKidBehaviour;
 
     private BaseStand _ClosestStand;
+    private BaseStand _ClosestKidStand;
 
     [Header("Throw")]
     [SerializeField] private float _throwStrength = 250f;
@@ -120,7 +121,7 @@ public class PlayerPickupComponent : MonoBehaviour
 
         var itemType = _ClosestStand.StandItemType;
 
-        if (_heldItemScript.ItemType == itemType) 
+        if (_heldItemScript.ItemType == itemType && _ClosestStand.HasKid) 
         {
             Debug.Log("Place Item");
             _ClosestStand.PlaceItem();
@@ -130,7 +131,17 @@ public class PlayerPickupComponent : MonoBehaviour
             Destroy(_heldItem);
             _heldItem = null;
             _heldItemScript = null;
+            return ;
         }
+
+
+
+    }
+    private void TryAssignKid()
+    {
+        if (_ClosestKidStand == null || _heldKid == null || _heldKidBehaviour == null || _heldKidBehaviour.ItemWanted != _ClosestKidStand.StandItemType) return;
+
+        _ClosestKidStand.PlaceChild(_heldKidBehaviour);
 
 
     }
@@ -151,9 +162,30 @@ public class PlayerPickupComponent : MonoBehaviour
         _ClosestStand = stand;
     }
 
+    public void SetClosestKidStand(BaseStand stand)
+    {
+
+        if (stand == null) Debug.Log("Setting closest stand to null can be dangerous! Use RemoveClosestStand");
+
+        if (_ClosestKidStand != null)
+        {
+
+            if (Vector3.Distance(transform.position, stand.transform.position) >=
+                Vector3.Distance(_ClosestKidStand.transform.position, stand.transform.position)) return;
+
+        }
+
+        _ClosestKidStand = stand;
+    }
+
     public void RemoveClosestStand(BaseStand stand) 
     {
         if (_ClosestStand == stand) _ClosestStand = null;
+    }
+
+    public void RemoveClosestKidStand(BaseStand stand)
+    {
+        if (_ClosestKidStand == stand) _ClosestKidStand = null;
     }
 
 
@@ -219,9 +251,13 @@ public class PlayerPickupComponent : MonoBehaviour
         _heldKid.transform.SetParent(null);
 
         AddKidToRange(_heldKidBehaviour);
+        TryAssignKid();
 
         _heldKid = null;
         _heldKidBehaviour = null;
+
+
+
     }
 
     private ItemScript GetClosestItem()
