@@ -24,7 +24,7 @@ public class PlayerPickupComponent : MonoBehaviour
     //Current held kid
     private GameObject _heldKid;
     private KidBehaviour _heldKidBehaviour;
-
+    [SerializeField] AudioSource _throwSource;
     private bool _isHolding => _heldItem != null || _heldKid != null;
 
     private BaseStand _ClosestStand;
@@ -139,8 +139,10 @@ public class PlayerPickupComponent : MonoBehaviour
         if (_heldItem == null) return;
         _ChargeThrow = false;
         DropHeldItem(default, transform.forward * _throwStrength);
+        _throwSource.volume = Mathf.Clamp(_throwStrength / 1200f, 0.5f, 1f);
+        _throwSource.Play();
         _throwStrength = 0f;
-
+   
     }
 
     private void TryUse()
