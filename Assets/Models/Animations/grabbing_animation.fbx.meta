@@ -3,7 +3,17 @@ guid: fbaad3e4905b6e448bc55f95a8bc5d63
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rat_rig_v02_PolySphere1_5
+    second: {fileID: 2100000, guid: 317aa8c0d595da64badb38a889cdb450, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface1
+    second: {fileID: 2100000, guid: 317aa8c0d595da64badb38a889cdb450, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
