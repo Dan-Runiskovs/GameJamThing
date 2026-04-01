@@ -28,7 +28,12 @@ public class VehicleArrivalScript : MonoBehaviour
     private Vector3 _diffPosLeave;
     private Quaternion _targetRot;
     private Quaternion _targetLeaveRot = Quaternion.Euler(0f,0f,0f);
+    private bool _SoundStarted = false;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSourceBrake;
 
+    [SerializeField] AudioClip _StartaudioClip;
+    [SerializeField] AudioClip _brakeaudioClip;
     public int phase = 0;
     void Start()
     {
@@ -39,6 +44,7 @@ public class VehicleArrivalScript : MonoBehaviour
         _diffPos = _endPos-_startPos;
         _diffPosLeave = _LeavePos - _startPos;
         _targetRot = Quaternion.Euler(_endRotRamp);
+        AudioSource audioPlayer = GetComponent<AudioSource>();
 
     }
 
@@ -49,12 +55,19 @@ public class VehicleArrivalScript : MonoBehaviour
         {
             if (_timer < _arrivalTime)
             {
+                if (!_SoundStarted)
+                {
+                     _audioSource.PlayOneShot(_StartaudioClip);
+                    _SoundStarted = true;
+                }
                 _timer += Time.deltaTime;
                 float percent = _timer / _arrivalTime;
                 transform.position = _startPos + _diffPos * percent;
             }
             else
             {
+
+
                 phase = 1;
                 _timer = 0f;
             }
