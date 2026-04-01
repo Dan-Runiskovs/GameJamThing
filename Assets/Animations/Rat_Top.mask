@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rat_Top
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:Mesh_Rat_Body
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_LeftUpLeg
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_LeftUpLeg/Rat_rig_v02:QuickRigCharacter_LeftLeg
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_LeftUpLeg/Rat_rig_v02:QuickRigCharacter_LeftLeg/Rat_rig_v02:QuickRigCharacter_LeftFoot
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_LeftUpLeg/Rat_rig_v02:QuickRigCharacter_LeftLeg/Rat_rig_v02:QuickRigCharacter_LeftFoot/Rat_rig_v02:QuickRigCharacter_LeftToeBase
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_RightUpLeg
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_RightUpLeg/Rat_rig_v02:QuickRigCharacter_RightLeg
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_RightUpLeg/Rat_rig_v02:QuickRigCharacter_RightLeg/Rat_rig_v02:QuickRigCharacter_RightFoot
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_RightUpLeg/Rat_rig_v02:QuickRigCharacter_RightLeg/Rat_rig_v02:QuickRigCharacter_RightFoot/Rat_rig_v02:QuickRigCharacter_RightToeBase
+    m_Weight: 0
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2/Rat_rig_v02:QuickRigCharacter_LeftShoulder
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2/Rat_rig_v02:QuickRigCharacter_LeftShoulder/Rat_rig_v02:QuickRigCharacter_LeftArm
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2/Rat_rig_v02:QuickRigCharacter_LeftShoulder/Rat_rig_v02:QuickRigCharacter_LeftArm/Rat_rig_v02:QuickRigCharacter_LeftForeArm
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2/Rat_rig_v02:QuickRigCharacter_LeftShoulder/Rat_rig_v02:QuickRigCharacter_LeftArm/Rat_rig_v02:QuickRigCharacter_LeftForeArm/Rat_rig_v02:QuickRigCharacter_LeftHand
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2/Rat_rig_v02:QuickRigCharacter_Neck
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2/Rat_rig_v02:QuickRigCharacter_Neck/Rat_rig_v02:QuickRigCharacter_Head
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2/Rat_rig_v02:QuickRigCharacter_RightShoulder
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2/Rat_rig_v02:QuickRigCharacter_RightShoulder/Rat_rig_v02:QuickRigCharacter_RightArm
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2/Rat_rig_v02:QuickRigCharacter_RightShoulder/Rat_rig_v02:QuickRigCharacter_RightArm/Rat_rig_v02:QuickRigCharacter_RightForeArm
+    m_Weight: 1
+  - m_Path: Rat_rig_v02:QuickRigCharacter_Reference/Rat_rig_v02:QuickRigCharacter_Hips/Rat_rig_v02:QuickRigCharacter_Spine/Rat_rig_v02:QuickRigCharacter_Spine1/Rat_rig_v02:QuickRigCharacter_Spine2/Rat_rig_v02:QuickRigCharacter_RightShoulder/Rat_rig_v02:QuickRigCharacter_RightArm/Rat_rig_v02:QuickRigCharacter_RightForeArm/Rat_rig_v02:QuickRigCharacter_RightHand
+    m_Weight: 1

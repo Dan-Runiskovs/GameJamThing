@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     private InputActionMap _playerActionMap;
     private Rigidbody _rb;
+    [Header("Animator")]
+    [SerializeField] private Animator _animator;
 
     [Header("Aiming")]
     [SerializeField] private float _aimSpeed = 8f;
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = _moveDirection * (_moveSpeed * speedMultiplier) * Time.fixedDeltaTime;
 
         _rb.MovePosition(_rb.position + movement);
+        _animator.SetFloat("Vel", movement.magnitude > 0 ? 1 : 0);
     }
 
     public void EnableMovement(bool enabled) { _MovementEnabled = enabled; }
