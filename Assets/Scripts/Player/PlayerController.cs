@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     private InputActionMap _playerActionMap;
     private Rigidbody _rb;
+    [Header("Animator")]
+    [SerializeField] private Animator _animator;
 
     [Header("Aiming")]
     [SerializeField] private float _aimSpeed = 8f;
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _backwardMovementMultiplier = 0.7f;  //The movement multiplier for aiming backwards
     [SerializeField] private float _moveAcceleration = 4f;  //Acceleration, especially noticeable when you quickly turn 180°
     [Tooltip("Player, left joystick input.")]
-    private Vector2 _moveInputDirection;
+    private Vector2 _moveInputDirection; 
     [Tooltip("Final direction the player will move towards.")]
     private Vector3 _moveDirection;
 
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = _moveDirection * (_moveSpeed * speedMultiplier) * Time.fixedDeltaTime;
 
         _rb.MovePosition(_rb.position + movement);
+        _animator.SetFloat("Vel", movement.magnitude > 0 ? 1 : 0);
     }
 
     public void EnableMovement(bool enabled) { _MovementEnabled = enabled; }

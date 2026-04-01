@@ -24,7 +24,12 @@ public class KidBehaviour : MonoBehaviour
     [SerializeField] private float _minPauseAtPoint = 0.5f;
     [SerializeField] private float _maxPauseAtPoint = 2.0f;
     private float _pauseUntil;
+    [SerializeField] AudioSource EffectsSource;
 
+    // Random pitch adjustment range.
+    [SerializeField] float LowPitchRange = .85f;
+    [SerializeField] float HighPitchRange = 1.15f;
+    [SerializeField] private AudioClip[] Sadclips;
     [Header("Happiness")]
     private float _happiness = 100.0f;
     public float Happiness
@@ -132,9 +137,11 @@ public class KidBehaviour : MonoBehaviour
         this.GetComponentInChildren<KidUIController>().Complain(ItemWanted);
 
         // --- Make kid visually sad ---
+        RandomSoundEffect(Sadclips);
         foreach (var part in this.GetComponentsInChildren<MeshRenderer>())
         {
             if (part == null) continue;
+      
 
             part.material = _sadMaterial;
         }
@@ -201,5 +208,17 @@ public class KidBehaviour : MonoBehaviour
         agent.isStopped = stop;
         agent.updateRotation = !stop;
         if (stop) agent.velocity = Vector3.zero;
+    }
+    public void RandomSoundEffect(params AudioClip[] clips)
+    {
+        int randomIndex = Random.Range(0, clips.Length);
+        float randomPitch = Random.Range(LowPitchRange, HighPitchRange);
+        EffectsSource.volume = Random.Range(0.8f, 1f);
+        SoundLimiter.Instance.PlaySound(
+            "KidCry", 
+            EffectsSource,
+            clips[randomIndex],
+            randomPitch
+        );
     }
 }

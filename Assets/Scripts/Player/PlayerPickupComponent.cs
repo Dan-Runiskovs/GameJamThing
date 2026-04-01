@@ -7,6 +7,8 @@ using static UnityEditor.Progress;
 public class PlayerPickupComponent : MonoBehaviour
 {
     private InputActionMap _playerActionMap;
+    [Header("Animator")]
+    [SerializeField] private Animator _animator;
 
     [Header("PickUp")]
     //Sockets for where you hold items
@@ -23,11 +25,13 @@ public class PlayerPickupComponent : MonoBehaviour
     private GameObject _heldKid;
     private KidBehaviour _heldKidBehaviour;
 
+    private bool _isHolding => _heldItem != null || _heldKid != null;
+
     private BaseStand _ClosestStand;
     private BaseStand _ClosestKidStand;
 
     private PlayerUIManager _playerUIManager;
-
+    [SerializeField]private AudioSource _audioSource;
     [Header("Throw")]
     [SerializeField] private float _throwStrength = 0f; //250
 
@@ -110,6 +114,8 @@ public class PlayerPickupComponent : MonoBehaviour
         {
             Debug.Log("Trying to pick up");
             PickUpKid(closestKid);
+            _audioSource.pitch = Random.Range(0.8f, 1.2f);
+            _audioSource.Play();
             return;
         }
 
@@ -121,6 +127,9 @@ public class PlayerPickupComponent : MonoBehaviour
         {
             Debug.Log("Trying to pick up");
             PickUpItem(closest);
+            _audioSource.pitch = Random.Range(0.8f, 1.2f);
+            _audioSource.Play();
+
         }
     }
 
@@ -262,7 +271,7 @@ public class PlayerPickupComponent : MonoBehaviour
         _heldItem.transform.SetParent(parentSocket);
 
         Debug.Log("Picked up: " + _heldItemScript.name);
-
+        _animator.SetBool("Grabbing", _isHolding);
         RemoveItemFromPickUpRange(item);
     }
     private void PickUpKid(KidBehaviour kid)
@@ -281,6 +290,7 @@ public class PlayerPickupComponent : MonoBehaviour
         _heldKid.transform.SetParent(parentSocket);
 
         Debug.Log("Picked up: " + _heldKidBehaviour.name);
+        _animator.SetBool("Grabbing", _isHolding);
         RemoveKidFromRange(kid);
     }
 
@@ -298,6 +308,9 @@ public class PlayerPickupComponent : MonoBehaviour
 
         AddItemToPickUpRange(_heldItemScript);
 
+        _animator.SetBool("Grabbing", false);
+        _animator.SetTrigger("Push");
+
         _heldItem = null;
         _heldItemScript = null;
     }
@@ -311,6 +324,9 @@ public class PlayerPickupComponent : MonoBehaviour
 
         AddKidToRange(_heldKidBehaviour);
         TryAssignKid();
+
+        _animator.SetBool("Grabbing", false);
+        _animator.SetTrigger("Push");
 
         _heldKid = null;
         _heldKidBehaviour = null;
