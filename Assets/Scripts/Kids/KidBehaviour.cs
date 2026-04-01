@@ -27,6 +27,11 @@ public class KidBehaviour : MonoBehaviour
     }
     [SerializeField] private float _happinessLossPS = 10.0f;
     private bool _isSad = false;
+    public bool IsSad
+    {
+        get { return _isSad; }
+    }
+
     [SerializeField] private Material _sadMaterial;
     [SerializeField] private Material _happyMaterial;
 
