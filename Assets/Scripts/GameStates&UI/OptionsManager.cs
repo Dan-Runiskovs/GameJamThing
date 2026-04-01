@@ -34,28 +34,31 @@ public class OptionsManager : MonoBehaviour
         {
             readyStates.Add(false);
 
-            GameObject slot = Instantiate(playerSlotPrefab, playerSlotParent);
-            playerSlots.Add(slot);
-
-            int playerIndex = i;
-
-            Button button = slot.GetComponent<Button>();
-            TextMeshProUGUI text = slot.GetComponentInChildren<TextMeshProUGUI>();
-
-            if (button == null)
+            if(playerSlotPrefab != null)
             {
-                Debug.LogError("Player slot prefab is missing a Button component.");
-                return;
-            }
+                GameObject slot = Instantiate(playerSlotPrefab, playerSlotParent);
+                playerSlots.Add(slot);
 
-            if (text == null)
-            {
-                Debug.LogError("Player slot prefab is missing a TextMeshProUGUI component.");
-                return;
-            }
+                int playerIndex = i;
 
-            UpdateSlotText(playerIndex, text);
-            button.onClick.AddListener(() => ToggleReady(playerIndex));
+                Button button = slot.GetComponent<Button>();
+                TextMeshProUGUI text = slot.GetComponentInChildren<TextMeshProUGUI>();
+
+                if (button == null)
+                {
+                    Debug.LogError("Player slot prefab is missing a Button component.");
+                    return;
+                }
+
+                if (text == null)
+                {
+                    Debug.LogError("Player slot prefab is missing a TextMeshProUGUI component.");
+                    return;
+                }
+
+                UpdateSlotText(playerIndex, text);
+                button.onClick.AddListener(() => ToggleReady(playerIndex));
+            }
         }
     }
 
