@@ -305,14 +305,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626436dd545afb54a98518974de14fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KidBehaviour
-  _stands: []
+  stands: []
   agent: {fileID: 1348791053631977822}
   wanderZone:
     center: {fileID: 0}
     radius: 8
   _minPauseAtPoint: 0.5
   _maxPauseAtPoint: 2
-  _happinessLossPS: 10
+  _happinessLossPS: 5
   _sadMaterial: {fileID: 2100000, guid: 615a09129c3673a40acf5f4d18176a59, type: 2}
   _happyMaterial: {fileID: 2100000, guid: 41248538c4d22fc44938a17b9a6a3075, type: 2}
 --- !u!195 &1348791053631977822
