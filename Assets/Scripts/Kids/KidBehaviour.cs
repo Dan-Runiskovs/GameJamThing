@@ -62,6 +62,8 @@ public class KidBehaviour : MonoBehaviour
         _happiness = 0.0f;
         _isSad = true;
 
+        StopAgent(true);
+
         // --- determine item wanted ---
         int randIdx = Random.Range(0, stands.Count);
         _itemWanted = stands.ElementAt(randIdx).StandItemType;
@@ -81,6 +83,8 @@ public class KidBehaviour : MonoBehaviour
         // --- set values ---
         _isSad = false;
         _happiness = extent;
+
+        StopAgent(false);
 
         // --- Make kid visually happy ---
         foreach (var part in this.GetComponentsInChildren<MeshRenderer>())
@@ -127,5 +131,10 @@ public class KidBehaviour : MonoBehaviour
         }
         return center;
     }
-
+    void StopAgent(bool stop)
+    {
+        agent.isStopped = stop;
+        agent.updateRotation = !stop;
+        if (stop) agent.velocity = Vector3.zero;
+    }
 }

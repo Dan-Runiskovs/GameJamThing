@@ -24,6 +24,9 @@ public class GlitterBombBehaviour : MonoBehaviour
 
         foreach(var item in _itemsInRange)
         {
+            if(item == null) continue;
+            if (item.ItemType == ItemScript.ItemTypes.Box || item.ItemType == ItemScript.ItemTypes.GlitterBomb) continue;
+
             Debug.Log("There was: " + item.name);
             item.Invalidate();
         }
