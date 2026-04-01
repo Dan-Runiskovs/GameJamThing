@@ -7,6 +7,7 @@ public class VehicleRoofTrigger : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("VehicleTrigger")]
     [SerializeField] private GameObject _roof = null;
+    [SerializeField] private MeshRenderer _side = null;
     [SerializeField] private List<GameObject> _playersInTrigger = new(); 
     
     private void OnTriggerEnter(Collider other)
@@ -34,9 +35,13 @@ public class VehicleRoofTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (_playersInTrigger.Count > 0) 
+        if (_playersInTrigger.Count > 0)
         {
             _roof.SetActive(false);
-        } else _roof.SetActive(true);
+            _side.enabled = false;
+        }
+        else { _roof.SetActive(true);
+            _side.enabled = true;
+        }
     }
 }

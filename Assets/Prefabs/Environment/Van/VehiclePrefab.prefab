@@ -135,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62a6c587ed2b8a4b8953d6cd0f509e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VehicleRoofTrigger
-  _roof: {fileID: 0}
+  _roof: {fileID: 1405907354055137604}
+  _side: {fileID: 3512350774787740592}
   _playersInTrigger: []
 --- !u!65 &3914203131553319086
 BoxCollider:
@@ -335,7 +336,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1937148246615673475}
-  - {fileID: 2372954596210723908}
   - {fileID: 5730170898619714474}
   - {fileID: 6837625429211024716}
   - {fileID: 6097465386903574128}
@@ -356,13 +356,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VehicleArrivalScript
   _ramp: {fileID: 3682192779283929896}
-  _startPos: {x: 8.5, y: 4.8, z: -45.98}
-  _endPos: {x: 8.5, y: 4.8, z: 12}
+  _startPos: {x: 15, y: 4.8, z: -45.98}
+  _endPos: {x: 15, y: 4.8, z: 12}
   _arrivalTime: 3
   _endRotRamp: {x: -110, y: 0, z: 0}
   _rampSpeed: 2
   _gridBehaviour: {fileID: 1486689633121837681}
-  _LeavePos: {x: 8.5, y: 4.8, z: 50}
+  _LeavePos: {x: 15, y: 4.8, z: 50}
   _prefab: {fileID: 4506993266358525041}
   _audioSource: {fileID: 8732661635467362855}
   _audioSourceBrake: {fileID: -9072247288864083615}
@@ -766,96 +766,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!1 &6653258848858572751
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2372954596210723908}
-  - component: {fileID: 9038641209988118154}
-  - component: {fileID: 3685420635233677440}
-  m_Layer: 0
-  m_Name: SM_VehicleDoor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2372954596210723908
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6653258848858572751}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000037748947, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 777156927687362709}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &9038641209988118154
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6653258848858572751}
-  m_Mesh: {fileID: 841964190261715575, guid: 1e216dbe8573abe4fb9f41d5704d3910, type: 3}
---- !u!23 &3685420635233677440
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6653258848858572751}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -2850916019459343683, guid: 1e216dbe8573abe4fb9f41d5704d3910, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7202133372976900428
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,6 +890,7 @@ GameObject:
   - component: {fileID: 6837625429211024716}
   - component: {fileID: 8798240683625300804}
   - component: {fileID: 3512350774787740592}
+  - component: {fileID: 3926948399666013924}
   m_Layer: 0
   m_Name: SM_VehicleWall
   m_TagString: Untagged
@@ -1059,3 +970,24 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3926948399666013924
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861113340447202722}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.96314573, y: 14.256857, z: 22.17401}
+  m_Center: {x: -7.4786463, y: 0.5024986, z: -18.003414}
