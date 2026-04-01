@@ -69,7 +69,7 @@ public class PlayerPickupComponent : MonoBehaviour
         //UI
         bool useInd = false;
         bool pickupInd = false;
-        if (_ClosestStand != null) 
+        if (_ClosestStand != null && _heldItem != null) 
         {
             useInd = true;
         }
@@ -272,6 +272,8 @@ public class PlayerPickupComponent : MonoBehaviour
         _heldKidBehaviour = kid;
         _heldKid = kid.gameObject;
 
+        _heldKidBehaviour.GetNeededStand.ShowIndicator(true);
+
         Transform parentSocket = _itemSocket;
 
         _heldKid.transform.position = parentSocket.position;
@@ -303,6 +305,8 @@ public class PlayerPickupComponent : MonoBehaviour
     {
         if(_heldKid == null || _heldKidBehaviour == null) return;
 
+
+        _heldKidBehaviour.GetNeededStand.ShowIndicator(false);
         _heldKid.transform.SetParent(null);
 
         AddKidToRange(_heldKidBehaviour);

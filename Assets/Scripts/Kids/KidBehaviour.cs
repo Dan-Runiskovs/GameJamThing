@@ -43,7 +43,17 @@ public class KidBehaviour : MonoBehaviour
 
     private bool _carried;
     private Collider _col;
+    private BaseStand _ClosestNeedsStand;
+    public BaseStand GetNeededStand { get { return _ClosestNeedsStand; } }
 
+    public BaseStand GetClosestNeedsStand() 
+    {
+        foreach (BaseStand stand in FindObjectsByType<BaseStand>(FindObjectsSortMode.None)) 
+        {
+            if (stand.StandItemType == _itemWanted) return stand;
+        }
+        return null;
+    }
     private void Awake()
     {
         _nextSadRollTime = Time.time + Random.Range(0f, 1f);
@@ -128,6 +138,8 @@ public class KidBehaviour : MonoBehaviour
 
             part.material = _sadMaterial;
         }
+
+        _ClosestNeedsStand = GetClosestNeedsStand();
     }
 
     public void Satisfy(float extent = 100.0f)
