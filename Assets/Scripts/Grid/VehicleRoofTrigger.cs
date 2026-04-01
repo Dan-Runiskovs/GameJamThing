@@ -11,8 +11,6 @@ public class VehicleRoofTrigger : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        //if (!other.CompareTag("Player")) return;
-
 
         PlayerController playerCtr= other.gameObject.GetComponent<PlayerController>();
         if (playerCtr != null && !_playersInTrigger.Contains(playerCtr.gameObject))

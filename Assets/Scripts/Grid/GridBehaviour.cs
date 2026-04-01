@@ -19,17 +19,16 @@ public class GridBehaviour : MonoBehaviour
     [SerializeField] GameObject _GridObjectPrefab;
     [SerializeField] int _ObjectsCount;
 
-
-
-
     [SerializeField]  private GridObject[] _Grid;
     [SerializeField]  private List<GridObject> _ExistingGridObjects = new List<GridObject>();
 
+    Collider _Collider;
 
 
     public void StartGrid()
     {
-
+        _Collider = GetComponent<Collider>();
+        _Collider.enabled = false;
         _Grid = new GridObject[_Colums * _Rows]; //Create new Grid
 
         _Width = transform.localScale.x;
@@ -38,13 +37,10 @@ public class GridBehaviour : MonoBehaviour
         if (_ObjectsCount > _Grid.Length) throw new Exception("Object Count higher than gridsize! U stupid or smth?");
 
         PlaceObjects();
+        _Collider.enabled = true;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public int GetIndex(int x, int y) 
     {
@@ -75,12 +71,6 @@ public class GridBehaviour : MonoBehaviour
             if (failer > 1000) throw new Exception("Place Objects endless loop"); //Debug 
             if (_Grid[randIndex] == null) 
             {
-
-
-               
-
-
-
                 Vector2 gridPos = GetPos(randIndex);
                 Vector3 goPos = transform.position;
                 goPos.x -= _Width / 2f - 0.5f;
@@ -103,6 +93,44 @@ public class GridBehaviour : MonoBehaviour
     public void RemoveGridObject(int index) 
     {
         _Grid[index] = null;
+    }
+
+
+
+
+    private void OnTriggerExit(Collider other)
+    {
+
+
+        PlayerController player = other.gameObject.GetComponent<PlayerController>();
+        if (player != null)
+        {
+            CheckTotalBoxes();
+        }
+    }
+
+
+    void CheckTotalBoxes() 
+    { 
+        bool BoxesLeft = false;
+        foreach(GridObject obj in _ExistingGridObjects) 
+        {
+            if(_Collider.bounds.Contains(obj.transform.position)) {
+                BoxesLeft = true;
+                break;
+            }
+        }
+
+        if (BoxesLeft) return;
+        Invoke(nameof(Leave), 3f);
+    }
+
+    void Leave() 
+    {
+
+        var vehicle = FindFirstObjectByType<VehicleArrivalScript>();
+        vehicle.phase = 4;
+        //Destroy(gameObject);
     }
 
 }
