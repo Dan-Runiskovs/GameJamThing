@@ -2,39 +2,73 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class OptionsManager : MonoBehaviour
 {
-    // Old player selection stuff
-    [SerializeField] private int totalPlayers = 4;
     [SerializeField] private string nextScene = "GameScene";
-    //[SerializeField] private string mainMenu = "MainMenu";
+    [SerializeField] private GameObject settingsMenu;
 
-    private int readyPlayers = 0;
-    //
+    // Player slot stuff
+    [SerializeField] private GameObject playerSlotPrefab;
+    [SerializeField] private Transform playerSlotParent;
 
     private bool isActive = false;
 
-    [SerializeField] private GameObject settingsMenu;
+    private int connectedPlayers;
+    private List<bool> readyStates = new List<bool>();
+    private List<GameObject> playerSlots = new List<GameObject>();
+
+    private void Start()
+    {
+        if (GameSession.Instance != null)
+        {
+            GameSession.Instance.ClearSelections();
+        }
+
+        connectedPlayers = Mathf.Clamp(Gamepad.all.Count, 1, 4);
+        Debug.Log("Connected controllers: " + connectedPlayers);
+
+        for (int i = 0; i < connectedPlayers; i++)
+        {
+            readyStates.Add(false);
+
+            GameObject slot = Instantiate(playerSlotPrefab, playerSlotParent);
+            playerSlots.Add(slot);
+
+            int playerIndex = i;
+
+            Button button = slot.GetComponent<Button>();
+            TextMeshProUGUI text = slot.GetComponentInChildren<TextMeshProUGUI>();
+
+            if (button == null)
+            {
+                Debug.LogError("Player slot prefab is missing a Button component.");
+                return;
+            }
+
+            if (text == null)
+            {
+                Debug.LogError("Player slot prefab is missing a TextMeshProUGUI component.");
+                return;
+            }
+
+            UpdateSlotText(playerIndex, text);
+            button.onClick.AddListener(() => ToggleReady(playerIndex));
+        }
+    }
 
     private void Update()
     {
         if (Gamepad.all.Count == 0) return;
 
-        foreach (var gamepad in Gamepad.all)
+        foreach (Gamepad gamepad in Gamepad.all)
         {
             if (gamepad.startButton.wasPressedThisFrame)
             {
-                if (isActive)
-                {
-                    TurnSettingsMenuOff();
-                    return;
-                }
-                else if(!isActive)
-                {
-                    TurnSettingsMenuOn();
-                    return;
-                }
+                TurnSettingsMenuOn();
+                break;
             }
         }
     }
@@ -43,10 +77,12 @@ public class OptionsManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(2);
     }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
@@ -55,27 +91,71 @@ public class OptionsManager : MonoBehaviour
     public void TurnSettingsMenuOn()
     {
         isActive = true;
-        settingsMenu.SetActive(isActive);
+
+        if (settingsMenu != null)
+            settingsMenu.SetActive(isActive);
     }
+
     public void TurnSettingsMenuOff()
     {
         isActive = false;
-        settingsMenu.SetActive(isActive);
+
+        if (settingsMenu != null)
+            settingsMenu.SetActive(isActive);
     }
 
-
-    //Old player selection stuff
-    public void PlayerReady()
+    private void ToggleReady(int playerIndex)
     {
-        readyPlayers++;
+        readyStates[playerIndex] = !readyStates[playerIndex];
 
-        Debug.Log("Players Ready: " + readyPlayers + "/" + totalPlayers);
+        TextMeshProUGUI text = playerSlots[playerIndex].GetComponentInChildren<TextMeshProUGUI>();
+        UpdateSlotText(playerIndex, text);
 
-        if (readyPlayers >= totalPlayers)
+        if (readyStates[playerIndex])
         {
+            SavePlayerSelection(playerIndex);
+        }
 
-            SceneManager.LoadScene(0);
+        CheckIfAllReady();
+    }
+
+    private void UpdateSlotText(int playerIndex, TextMeshProUGUI text)
+    {
+        string state = readyStates[playerIndex] ? "READY" : "NOT READY";
+        text.text = $"Player {playerIndex + 1}\n{state}";
+    }
+
+    private void SavePlayerSelection(int playerIndex)
+    {
+        PlayerSelectionData selection = new PlayerSelectionData
+        {
+            playerIndex = playerIndex,
+            characterIndex = 0,
+            ratColorIndex = Random.Range(0, 4),
+            hatIndex = Random.Range(0, 5)
+        };
+
+        if (GameSession.Instance != null)
+        {
+            GameSession.Instance.SavePlayerSelection(selection);
         }
     }
-    
+
+    private void CheckIfAllReady()
+    {
+        int readyPlayers = 0;
+
+        for (int i = 0; i < connectedPlayers; i++)
+        {
+            if (readyStates[i])
+                readyPlayers++;
+        }
+
+        Debug.Log("Players Ready: " + readyPlayers + "/" + connectedPlayers);
+
+        if (readyPlayers >= connectedPlayers)
+        {
+            SceneManager.LoadScene(nextScene);
+        }
+    }
 }

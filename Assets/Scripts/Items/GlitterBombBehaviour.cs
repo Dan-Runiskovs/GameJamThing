@@ -29,6 +29,8 @@ public class GlitterBombBehaviour : MonoBehaviour
 
             Vector3 velocity = hit.transform.position - transform.position;
 
+            GetComponent<ParticleSystem>().PlayParticle();
+
             hit.attachedRigidbody?.AddForce(velocity*100f, ForceMode.Force);
 
 

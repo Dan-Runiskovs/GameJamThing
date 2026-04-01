@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 915529699110994817}
   - component: {fileID: 2206751534166064469}
+  - component: {fileID: 1334236471540997803}
   - component: {fileID: 2370433154398757413}
   - component: {fileID: 844391061443169661}
   - component: {fileID: 1043088026777544563}
@@ -92,6 +93,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &1334236471540997803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7789825246184946922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dea4ad6989287e43bd19348d20ffde7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleSystem
+  _particle: {fileID: 4938095755617958529, guid: 2e79f16be10fbd14f8d5ef191f8db4aa, type: 3}
 --- !u!114 &2370433154398757413
 MonoBehaviour:
   m_ObjectHideFlags: 0
