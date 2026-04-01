@@ -356,13 +356,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VehicleArrivalScript
   _ramp: {fileID: 3682192779283929896}
-  _startPos: {x: 15, y: 4.8, z: -45.98}
-  _endPos: {x: 15, y: 4.8, z: 12}
+  _startPos: {x: 15, y: 4.8, z: -50}
+  _endPos: {x: 15, y: 4.8, z: 10}
   _arrivalTime: 3
   _endRotRamp: {x: -110, y: 0, z: 0}
   _rampSpeed: 2
   _gridBehaviour: {fileID: 1486689633121837681}
-  _LeavePos: {x: 15, y: 4.8, z: 50}
+  _LeavePos: {x: 15, y: 4.8, z: 40}
   _prefab: {fileID: 4506993266358525041}
   _audioSource: {fileID: 8732661635467362855}
   _audioSourceBrake: {fileID: -9072247288864083615}
