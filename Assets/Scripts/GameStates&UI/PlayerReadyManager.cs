@@ -21,8 +21,7 @@ public class PlayerReadyManager : MonoBehaviour
     }
 
     private void LoadNextScene()
-    {
-        Debug.Log("Should load next scene...");
+    {     
         SceneManager.LoadScene(nextScene);
     }
 }
