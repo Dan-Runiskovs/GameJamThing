@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class KidSpawner : MonoBehaviour
@@ -9,6 +10,9 @@ public class KidSpawner : MonoBehaviour
 
     [SerializeField] private Transform _spawnpoint;
     [SerializeField] private Transform _wanderZoneCenter;
+
+    [SerializeField]
+    private List<BaseStand> _stands = new List<BaseStand>();
 
     private float _internalTimer = 0.0f;
 
@@ -25,7 +29,11 @@ public class KidSpawner : MonoBehaviour
             _internalTimer = 0.0f;
             
             GameObject kid = Instantiate<GameObject>(_kidPrefab, _spawnpoint.position, Quaternion.identity);
-            kid.GetComponent<KidBehaviour>().wanderZone.center = _wanderZoneCenter;
+            KidBehaviour kb = kid.GetComponent<KidBehaviour>();
+
+            kb.wanderZone.center = _wanderZoneCenter;
+            kb.stands = _stands;
+
             _kidsSpawned++;
 
             if (_kidsSpawned == _kidsToSpwn) KidSpawned?.Invoke();

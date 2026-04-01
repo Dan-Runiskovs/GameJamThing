@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Progress;
 
 public class PlayerPickupComponent : MonoBehaviour
 {
@@ -12,9 +13,15 @@ public class PlayerPickupComponent : MonoBehaviour
     [SerializeField] private Transform _itemSocket;
 
     private readonly List<ItemScript> _itemsInRange = new();        //All ItemScripts of all items in Pick Up range
+    private readonly List<KidBehaviour> _kidsInRange = new();
+
     //Current held Item
     private GameObject _heldItem;
     private ItemScript _heldItemScript;
+
+    //Current held kid
+    private GameObject _heldKid;
+    private KidBehaviour _heldKidBehaviour;
 
     private BaseStand _ClosestStand;
 
@@ -42,10 +49,28 @@ public class PlayerPickupComponent : MonoBehaviour
 
     private void TryInteract()
     {
+        // --- drop first ---
         if (_heldItem != null)
         {
             Debug.Log("Dropping");
             DropHeldItem();
+            return;
+        }
+
+        if (_heldKid != null)
+        {
+            Debug.Log("Dropping Kid");
+            DropHeldKid();
+            return;
+        }
+
+        // --- kids ---
+        KidBehaviour closestKid = GetClosestKid();
+
+        if (closestKid != null)
+        {
+            Debug.Log("Trying to pick up");
+            PickUpKid(closestKid);
             return;
         }
 
@@ -58,14 +83,6 @@ public class PlayerPickupComponent : MonoBehaviour
             Debug.Log("Trying to pick up");
             PickUpItem(closest);
         }
-        /*
-        else if (closest != null && _heldItem != null)  //Swaps out held item and closest item
-        {
-            Debug.Log("Swapping");
-            DropHeldItem(closest.transform.position);
-            PickUpItem(closest);
-        }
-        */
     }
 
     private void TryThrow()
@@ -113,6 +130,8 @@ public class PlayerPickupComponent : MonoBehaviour
             _heldItem = null;
             _heldItemScript = null;
         }
+
+
     }
 
     public void SetClosestStand(BaseStand stand) 
@@ -158,6 +177,22 @@ public class PlayerPickupComponent : MonoBehaviour
 
         RemoveItemFromPickUpRange(item);
     }
+    private void PickUpKid(KidBehaviour kid)
+    {
+        if (kid == null) return;
+
+        _heldKidBehaviour = kid;
+        _heldKid = kid.gameObject;
+
+        Transform parentSocket = _itemSocket;
+
+        _heldKid.transform.position = parentSocket.position;
+        _heldKid.transform.rotation = parentSocket.rotation;
+        _heldKid.transform.SetParent(parentSocket);
+
+        Debug.Log("Picked up: " + _heldKidBehaviour.name);
+        RemoveKidFromRange(kid);
+    }
 
     private void DropHeldItem(Vector3 dropPosition = default, Vector3 throwStrength = default)
     {
@@ -175,6 +210,17 @@ public class PlayerPickupComponent : MonoBehaviour
 
         _heldItem = null;
         _heldItemScript = null;
+    }
+    private void DropHeldKid()
+    {
+        if(_heldKid == null || _heldKidBehaviour == null) return;
+
+        _heldKid.transform.SetParent(null);
+
+        AddKidToRange(_heldKidBehaviour);
+
+        _heldKid = null;
+        _heldKidBehaviour = null;
     }
 
     private ItemScript GetClosestItem()
@@ -211,6 +257,31 @@ public class PlayerPickupComponent : MonoBehaviour
         return closest;
     }
 
+    private KidBehaviour GetClosestKid()
+    {
+        KidBehaviour closest = null;
+        float closestDistance = Mathf.Infinity;
+        Vector3 playerPosition = transform.position;
+
+        foreach (var kid in _kidsInRange)
+        {
+            if (kid == null)
+            {
+                _kidsInRange.Remove(kid);
+                continue;
+            }
+
+            float distance = (kid.transform.position - playerPosition).magnitude;
+            if(distance < closestDistance)
+            {
+                closest = kid; 
+                closestDistance = distance;
+            }
+        }
+
+        return closest;
+    }
+
     //Checks which items enter the player's Pick Up range
     private void OnTriggerEnter(Collider other)
     {
@@ -223,6 +294,16 @@ public class PlayerPickupComponent : MonoBehaviour
 
             AddItemToPickUpRange(itemScript);
         }
+
+        if(other.CompareTag("Kid"))
+        {
+            KidBehaviour kid = other.GetComponent<KidBehaviour>();
+            if (kid == null) return;
+
+            if (!kid.IsSad) return; // skip happy ones
+
+            AddKidToRange(kid);
+        }
     }
 
     //Checks which items leave the player's Pick Up range
@@ -233,8 +314,15 @@ public class PlayerPickupComponent : MonoBehaviour
             ItemScript itemScript = other.GetComponent<ItemScript>();
             if (itemScript == null) return;
 
-
             RemoveItemFromPickUpRange(itemScript);
+        }
+
+        if (other.CompareTag("Kid"))
+        {
+            KidBehaviour kid = other.GetComponent<KidBehaviour>();
+            if (kid == null) return;
+
+            RemoveKidFromRange(kid);
         }
     }
     //Adds items to the pick up range list
@@ -248,6 +336,15 @@ public class PlayerPickupComponent : MonoBehaviour
             _itemsInRange.Add(item);
     }
 
+    private void AddKidToRange(KidBehaviour kid)
+    {
+        if (kid == null) return;
+
+        Debug.Log("Added :" + kid.name);
+        if (!_kidsInRange.Contains(kid))
+            _kidsInRange.Add(kid);
+    }
+
 
     //Removes items from the pick up range list
     private void RemoveItemFromPickUpRange(ItemScript item)
@@ -255,6 +352,13 @@ public class PlayerPickupComponent : MonoBehaviour
         if (item == null) return;
 
         _itemsInRange.Remove(item);
+    }
+
+    private void RemoveKidFromRange(KidBehaviour kid)
+    {
+        if(kid == null) return;
+
+        _kidsInRange.Remove(kid);
     }
     #endregion Items
 }
