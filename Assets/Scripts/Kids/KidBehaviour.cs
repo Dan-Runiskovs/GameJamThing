@@ -14,6 +14,8 @@ public class KidBehaviour : MonoBehaviour
         get { return _itemWanted; }
     }
 
+    private float _nextSadRollTime = 0f;
+
     [Header("Movement")]
     public NavMeshAgent agent;
     [System.Serializable]
@@ -41,6 +43,7 @@ public class KidBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        _nextSadRollTime = Time.time + Random.Range(0f, 1f);
         // --- Make kid visually happy ---
         foreach (var part in this.GetComponentsInChildren<MeshRenderer>())
         {
@@ -62,14 +65,23 @@ public class KidBehaviour : MonoBehaviour
 
         _happiness -= _happinessLossPS * Time.deltaTime;
 
-        if(_happiness <= 50.0f) RollSadness();
+        if (_happiness <= 40.0f)
+        {
+            if (Time.time >= _nextSadRollTime)
+            {
+                RollSadness();
+                _nextSadRollTime = Time.time + 1.0f; // roll once per second
+            }
+        }
     }
 
     private void RollSadness()
     {
-        float sadPercent = 100.0f - _happiness;
+        float sadChance = Mathf.InverseLerp(40f, 0f, _happiness) * 100f;
+
         float rand = Random.Range(0.0f, 100.0f);
-        if(rand <= sadPercent)
+
+        if (rand <= sadChance)
         {
             MakeSad();
         }
