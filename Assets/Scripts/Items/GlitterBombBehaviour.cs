@@ -24,6 +24,14 @@ public class GlitterBombBehaviour : MonoBehaviour
 
         foreach (var hit in hits)
         {
+
+            if (hit.gameObject == gameObject) continue;
+
+            Vector3 velocity = hit.transform.position - transform.position;
+
+            hit.attachedRigidbody?.AddForce(velocity*100f, ForceMode.Force);
+
+
             if (!hit.CompareTag("Item")) continue;
 
             ItemScript item = hit.GetComponent<ItemScript>();
