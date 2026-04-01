@@ -8,22 +8,53 @@ public class OptionsManager : MonoBehaviour
     // Old player selection stuff
     [SerializeField] private int totalPlayers = 4;
     [SerializeField] private string nextScene = "GameScene";
+    //[SerializeField] private string mainMenu = "MainMenu";
 
     private int readyPlayers = 0;
     //
 
-    public void PlayGame()
+    private bool isActive = false;
+
+    [SerializeField] private GameObject settingsMenu;
+
+    private void Update()
+    {
+        if (Gamepad.all.Count == 0) return;
+
+        foreach (var gamepad in Gamepad.all)
+        {
+            if (gamepad.startButton.wasPressedThisFrame)
+            {
+                TurnSettingsMenuOn();
+                break;
+            }
+        }
+    }
+
+    public void LoadMainMenu()
     {
         SceneManager.LoadScene(1);
+    }
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(2);
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
-    public void LoadMainMenu()
+
+    public void TurnSettingsMenuOn()
     {
-        SceneManager.LoadScene(0);
+        isActive = true;
+        settingsMenu.SetActive(isActive);
     }
+    public void TurnSettingsMenuOff()
+    {
+        isActive = false;
+        settingsMenu.SetActive(isActive);
+    }
+
 
     //Old player selection stuff
     public void PlayerReady()
