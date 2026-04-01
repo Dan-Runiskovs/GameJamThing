@@ -35,6 +35,7 @@ public class KidSpawner : MonoBehaviour
             kb.stands = _stands;
 
             _kidsSpawned++;
+            this.GetComponentInParent<KidHappinessMonitor>().AddKid(kb);
 
             if (_kidsSpawned == _kidsToSpwn) KidSpawned?.Invoke();
         }

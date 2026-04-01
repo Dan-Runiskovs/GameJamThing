@@ -76,6 +76,8 @@ public class ItemScript : MonoBehaviour
 
     public void Invalidate()
     {
+        _isValid = false;
+
         foreach (var part in this.GetComponentsInChildren<MeshRenderer>())
         {
             if (part == null) continue;
