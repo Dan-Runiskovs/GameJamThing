@@ -22,6 +22,7 @@ public class PlayerSpawner : MonoBehaviour
                 playerIndex: i,
                 pairWithDevice: gamepads[i]
             );
+            //player.currentActionMap
             // --- Move player to spawn point ---
             player.GetComponent<Rigidbody>().position = playerSpawnPoints[i].position;
             player.GetComponent<Rigidbody>().rotation = playerSpawnPoints[i].rotation;
