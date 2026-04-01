@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _backwardMovementMultiplier = 0.7f;  //The movement multiplier for aiming backwards
     [SerializeField] private float _moveAcceleration = 4f;  //Acceleration, especially noticeable when you quickly turn 180°
     [Tooltip("Player, left joystick input.")]
-    private Vector2 _moveInputDirection;
+    private Vector2 _moveInputDirection; 
     [Tooltip("Final direction the player will move towards.")]
     private Vector3 _moveDirection;
 

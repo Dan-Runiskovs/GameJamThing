@@ -27,7 +27,7 @@ public class PlayerPickupComponent : MonoBehaviour
     private BaseStand _ClosestKidStand;
 
     private PlayerUIManager _playerUIManager;
-
+    [SerializeField]private AudioSource _audioSource;
     [Header("Throw")]
     [SerializeField] private float _throwStrength = 0f; //250
 
@@ -110,6 +110,8 @@ public class PlayerPickupComponent : MonoBehaviour
         {
             Debug.Log("Trying to pick up");
             PickUpKid(closestKid);
+            _audioSource.pitch = Random.Range(0.8f, 1.2f);
+            _audioSource.Play();
             return;
         }
 
@@ -121,6 +123,9 @@ public class PlayerPickupComponent : MonoBehaviour
         {
             Debug.Log("Trying to pick up");
             PickUpItem(closest);
+            _audioSource.pitch = Random.Range(0.8f, 1.2f);
+            _audioSource.Play();
+
         }
     }
 
