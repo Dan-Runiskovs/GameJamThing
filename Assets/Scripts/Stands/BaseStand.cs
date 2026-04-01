@@ -15,6 +15,9 @@ public class BaseStand : MonoBehaviour
     [Header("Stand")]
     [SerializeField] ItemScript.ItemTypes _standItem;
     [SerializeField] QuickTimeEventBase _QTE;
+    [SerializeField] private bool _isTrashCan;
+
+    public bool IsTrashCan { get { return _isTrashCan; } }
     public ItemScript.ItemTypes StandItemType {  get { return _standItem; } }
 
 
