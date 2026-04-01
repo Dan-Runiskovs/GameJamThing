@@ -25,8 +25,16 @@ public class OptionsManager : MonoBehaviour
         {
             if (gamepad.startButton.wasPressedThisFrame)
             {
-                TurnSettingsMenuOn();
-                break;
+                if (isActive)
+                {
+                    TurnSettingsMenuOff();
+                    return;
+                }
+                else if(!isActive)
+                {
+                    TurnSettingsMenuOn();
+                    return;
+                }
             }
         }
     }
@@ -41,7 +49,7 @@ public class OptionsManager : MonoBehaviour
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(0);
     }
 
     public void TurnSettingsMenuOn()
@@ -65,12 +73,9 @@ public class OptionsManager : MonoBehaviour
 
         if (readyPlayers >= totalPlayers)
         {
-            LoadNextScene();
+
+            SceneManager.LoadScene(0);
         }
     }
-
-    private void LoadNextScene()
-    {
-        SceneManager.LoadScene(nextScene);
-    }
+    
 }

@@ -41,6 +41,9 @@ public class KidBehaviour : MonoBehaviour
     [SerializeField] private Material _sadMaterial;
     [SerializeField] private Material _happyMaterial;
 
+    private bool _carried;
+    private Collider _col;
+
     private void Awake()
     {
         _nextSadRollTime = Time.time + Random.Range(0f, 1f);
@@ -52,6 +55,12 @@ public class KidBehaviour : MonoBehaviour
             part.material = _happyMaterial;
         }
     }
+
+    private void Start()
+    {
+        _col = GetComponent<Collider>();
+    }
+
     void Update()
     {
         if (_isSad)
@@ -73,6 +82,18 @@ public class KidBehaviour : MonoBehaviour
                 _nextSadRollTime = Time.time + 1.0f; // roll once per second
             }
         }
+    }
+
+    public void Carry()
+    {
+        _carried = true;
+        _col.enabled = false;
+    }
+
+    public void Uncarry()
+    {
+        _carried = false;
+        _col.enabled = true;
     }
 
     private void RollSadness()
