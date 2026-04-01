@@ -5010,10 +5010,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3512350774787740592, guid: 5e70132ea5a2e9d4fbc33828d46607a9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a9bd390c8f5dd20498c7b9245d8ba24f, type: 2}
     - target: {fileID: 4506993266358525041, guid: 5e70132ea5a2e9d4fbc33828d46607a9, type: 3}
       propertyPath: m_Name
       value: VehiclePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6775662038927614953, guid: 5e70132ea5a2e9d4fbc33828d46607a9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a9bd390c8f5dd20498c7b9245d8ba24f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5344,6 +5352,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 386922270115337505, guid: 8f333ff967075fb448dce015acce6f16, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e6a3b2f19d04a04e86542f10134c0c4, type: 2}
     - target: {fileID: 675832043916316469, guid: 8f333ff967075fb448dce015acce6f16, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -5408,6 +5420,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7369989867066203883, guid: 8f333ff967075fb448dce015acce6f16, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e6a3b2f19d04a04e86542f10134c0c4, type: 2}
+    - target: {fileID: 8233629715531888935, guid: 8f333ff967075fb448dce015acce6f16, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e6a3b2f19d04a04e86542f10134c0c4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8253,6 +8273,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1333169129571332962, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f2faaac85bbf342459f6b72485fe330c, type: 2}
+    - target: {fileID: 1613872668649494122, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 629d56f880c369a48afb62df969d6ca8, type: 2}
     - target: {fileID: 2515683412028945089, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -8261,10 +8289,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3479665277843297370, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: db144e30fbb02164ca4872410896814e, type: 2}
     - target: {fileID: 3489833812705611276, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3555415066758426862, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a84d40f8104bae44903a22dd9b7fc35, type: 2}
+    - target: {fileID: 3612053959746090421, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 10a25b82384e6f6418e0d4f7f8d8b718, type: 2}
     - target: {fileID: 4164159859077356078, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -8309,6 +8349,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5455287206063312026, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ca0214609606e0844829a705be75d936, type: 2}
     - target: {fileID: 5887208253544628405, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -8321,6 +8365,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6371976219006111182, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 75745fe4871fecf4e9456e5aca6c0b90, type: 2}
+    - target: {fileID: 6766809748426740193, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 11e2fbc024a39924e9defb6f81c39fa2, type: 2}
     - target: {fileID: 7086207279266038685, guid: 15f77ee04eedfc94fb36dbab99203c11, type: 3}
       propertyPath: m_Name
       value: RadioStand

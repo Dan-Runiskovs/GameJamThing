@@ -25,7 +25,7 @@ public class BaseStand : MonoBehaviour
 
     public void ShowIndicator(bool showIndicator) 
     {
-        _IndicatorKid.SetActive(showIndicator);
+        _IndicatorKid?.SetActive(showIndicator);
     }
     public void PlaceItem() 
     {
