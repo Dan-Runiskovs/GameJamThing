@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundLimiter : MonoBehaviour
 {
     public static SoundLimiter Instance;
 
-    public int maxInstances = 4;
+    public int maxInstances = 3;
 
     private class PlayingSound
     {
@@ -13,21 +13,24 @@ public class SoundLimiter : MonoBehaviour
         public float startTime;
     }
 
-    private Dictionary<AudioClip, List<PlayingSound>> activeSounds = new();
+    private Dictionary<string, List<PlayingSound>> activeGroups = new();
 
     void Awake()
     {
         Instance = this;
     }
 
-    public void PlaySound(AudioSource source, AudioClip clip, float pitch = 1f)
+    public void PlaySound(string group, AudioSource source, AudioClip clip, float pitch = 1f)
     {
-        if (!activeSounds.ContainsKey(clip))
-            activeSounds[clip] = new List<PlayingSound>();
+        if (!activeGroups.ContainsKey(group))
+            activeGroups[group] = new List<PlayingSound>();
 
-        var list = activeSounds[clip];
+        var list = activeGroups[group];
 
-        // If we're at limit ? kill oldest
+        // Clean dead entries (IMPORTANT)
+        list.RemoveAll(s => s.source == null || !s.source.isPlaying);
+
+        // If at limit → kill oldest
         if (list.Count >= maxInstances)
         {
             PlayingSound oldest = list[0];
@@ -44,7 +47,7 @@ public class SoundLimiter : MonoBehaviour
             list.Remove(oldest);
         }
 
-        // Play new sound
+        // Play new
         source.pitch = pitch;
         source.clip = clip;
         source.Play();
