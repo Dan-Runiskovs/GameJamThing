@@ -27,6 +27,7 @@ public class QuickTimeEventBase : MonoBehaviour
     private InputActionMap _playerActionMap;
     private GameObject _player;
     private BaseStand _stand;
+    private PlayerUIManager _UIManager;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,6 +53,7 @@ public class QuickTimeEventBase : MonoBehaviour
         _countdown = 0f;
         _player = player;
         _stand = stand;
+        _UIManager = player.GetComponentInChildren<PlayerUIManager>();
         _playerActionMap = player.GetComponent<PlayerInput>().actions.FindActionMap("QTE");
         _countdownActive = true;
 
@@ -70,7 +72,8 @@ public class QuickTimeEventBase : MonoBehaviour
         handlerList.Add(handler);
         _playerActionMap.FindAction("RightArrow").started += handler;
 
-        Debug.Log(_EventSequence[0]);
+        _UIManager?.EnableQTEUI(_EventSequence[0]);
+
 
     }
 
@@ -86,6 +89,8 @@ public class QuickTimeEventBase : MonoBehaviour
         _player.GetComponent<PlayerController>().EnableMovement(true);
         _player = null;
         _stand = null;
+        _UIManager?.DisableQTEUI();
+        _UIManager = null;
     }
 
     public void FailEvent() 
@@ -103,13 +108,14 @@ public class QuickTimeEventBase : MonoBehaviour
         _EventCount++;
         _countdown = 0f;
 
-        if ( _EventCount > _EventSequence.Count-1)
+        if (_EventCount > _EventSequence.Count - 1)
         {
             Debug.Log("Success QTE");
             _countdownActive = false;
             _stand.QTESuccess();
             QuitEvent();
-        }else Debug.Log(_EventSequence[_EventCount]);
+        }
+        else _UIManager?.EnableQTEUI(_EventSequence[_EventCount]);
 
     }
 
