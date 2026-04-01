@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -17,16 +18,26 @@ public class VehicleArrivalScript : MonoBehaviour
     [SerializeField] private float _rampSpeed = 2.0f;
     [SerializeField] private GridBehaviour _gridBehaviour;
 
+    [Space]
+    [SerializeField] private Vector3 _LeavePos = new Vector3();
+    [Space]
+    [SerializeField] private GameObject _prefab;
+
     private float _timer = 0f;
     private Vector3 _diffPos;
+    private Vector3 _diffPosLeave;
     private Quaternion _targetRot;
+    private Quaternion _targetLeaveRot = Quaternion.Euler(0f,0f,0f);
 
-    int phase = 0;
+    public int phase = 0;
     void Start()
     {
         enabled = true;
+        phase = 0;
         transform.position = _startPos;
+        if (_gridBehaviour != null) _gridBehaviour = GetComponentInChildren<GridBehaviour>();
         _diffPos = _endPos-_startPos;
+        _diffPosLeave = _LeavePos - _startPos;
         _targetRot = Quaternion.Euler(_endRotRamp);
 
     }
@@ -50,9 +61,12 @@ public class VehicleArrivalScript : MonoBehaviour
         }
         else if (phase == 1)
         {
+            var parent = _gridBehaviour.transform.parent;
             _gridBehaviour.transform.parent = null;
             _gridBehaviour?.StartGrid();
             phase = 2;
+
+            _gridBehaviour.transform.SetParent(parent);
 
 
         }
@@ -62,7 +76,35 @@ public class VehicleArrivalScript : MonoBehaviour
             if (_ramp.transform.rotation == _targetRot)
             {
                 phase = 3;
-                enabled = false;
+
+            }
+        }
+        else if (phase == 4) 
+        {
+            
+            _ramp.transform.rotation = Quaternion.Lerp(_ramp.transform.rotation, _targetLeaveRot, _rampSpeed * Time.deltaTime);
+            if (_ramp.transform.rotation == _targetLeaveRot)
+            {
+                phase = 5;
+                _timer = 0f;
+            }
+        }
+        else if (phase == 5)
+        {
+            if (_timer < _arrivalTime)
+            {
+                _timer += Time.deltaTime;
+                float percent = _timer / _arrivalTime;
+                transform.position = _endPos + _diffPosLeave * percent;
+            }
+            else
+            {
+                phase = 6;
+                _timer = 0f;
+                var GO = Instantiate(_prefab, _startPos, transform.rotation);
+                GO.GetComponent<VehicleArrivalScript>().Start();
+                Destroy(gameObject);
+
             }
         }
 
