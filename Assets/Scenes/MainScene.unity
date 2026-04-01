@@ -1666,8 +1666,8 @@ Camera:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.59428394, g: 0.67295593, b: 0.25182936, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5998,9 +5998,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7633e8751d6a34db39a1ffbc7a0071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OptionsManager
-  totalPlayers: 4
   nextScene: MainScene
   settingsMenu: {fileID: 94552043}
+  playerSlotPrefab: {fileID: 0}
+  playerSlotParent: {fileID: 0}
 --- !u!4 &1421741623
 Transform:
   m_ObjectHideFlags: 0
