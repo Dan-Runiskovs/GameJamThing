@@ -51,8 +51,13 @@ public class KidBehaviour : MonoBehaviour
     }
     void Update()
     {
-        if (_isSad) return;
+        if (_isSad)
+        {
+            _happiness -= _happinessLossPS * Time.deltaTime * 0.5f;
+            _happiness = Mathf.Max(0.0f, _happiness); // clamp happiness at 0
 
+            return;
+        }
         MoveUpdate();
 
         _happiness -= _happinessLossPS * Time.deltaTime;
