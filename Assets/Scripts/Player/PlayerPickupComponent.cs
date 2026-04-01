@@ -29,15 +29,17 @@ public class PlayerPickupComponent : MonoBehaviour
     private PlayerUIManager _playerUIManager;
 
     [Header("Throw")]
-    [SerializeField] private float _throwStrength = 250f;
+    [SerializeField] private float _throwStrength = 0f; //250
 
+    private bool _ChargeThrow = false;
     private void Awake()
     {
         PlayerInput input = GetComponentInParent<PlayerInput>();
         _playerActionMap = input.actions.FindActionMap("Player");
 
         _playerActionMap.FindAction("Interact").started += context => TryInteract();
-        _playerActionMap.FindAction("Throw").started += context => TryThrow();
+        _playerActionMap.FindAction("Throw").started += context => StartThrow();
+        _playerActionMap.FindAction("Throw").canceled += context => TryThrow();
         _playerActionMap.FindAction("Use").started += context => TryUse();
         _playerUIManager = transform.parent.GetComponentInChildren<PlayerUIManager>();
     }
@@ -48,9 +50,23 @@ public class PlayerPickupComponent : MonoBehaviour
         
     }
 
+    void StartThrow() 
+    {
+        if (_heldItemScript == null || _heldItem == null) return;
+        _ChargeThrow = true;
+        _throwStrength = 0f;
+    }
+
     private void Update()
     {
 
+        if (_ChargeThrow && _throwStrength < 1200f)
+        {
+            _throwStrength += Time.deltaTime*500f;
+        }
+
+
+        //UI
         bool useInd = false;
         bool pickupInd = false;
         if (_ClosestStand != null) 
@@ -110,9 +126,11 @@ public class PlayerPickupComponent : MonoBehaviour
 
     private void TryThrow()
     {
-        if (_heldItem == null) return;
 
+        if (_heldItem == null) return;
+        _ChargeThrow = false;
         DropHeldItem(default, transform.forward * _throwStrength);
+        _throwStrength = 0f;
 
     }
 
