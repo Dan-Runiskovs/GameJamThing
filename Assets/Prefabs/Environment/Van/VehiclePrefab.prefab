@@ -434,7 +434,7 @@ MonoBehaviour:
   _Colums: 5
   _Rows: 8
   _GridObjectPrefab: {fileID: 8896780164430495609, guid: ce04bd5718aa24b43a8e3cb3fd893bc7, type: 3}
-  _ObjectsCount: 2
+  _ObjectsCount: 10
   _Grid: []
   _ExistingGridObjects: []
 --- !u!33 &5874059387275336457
