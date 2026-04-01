@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class PlayerUIManager : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerUIManager : MonoBehaviour
     [SerializeField] private GameObject _DownArrowUI;
     [SerializeField] private GameObject _LeftArrowUI;
     [SerializeField] private GameObject _RightArrowUI;
+    [Space]
+    [SerializeField] private GameObject _XUI;
 
 
 
@@ -40,6 +43,11 @@ public class PlayerUIManager : MonoBehaviour
                 _RightArrowUI.SetActive(true);
                 break;
         }
+    }
+
+    public void EnablePickupIndicator(bool enable) 
+    {
+        _XUI.SetActive(enable);
     }
 
     public void DisableQTEUI() 
