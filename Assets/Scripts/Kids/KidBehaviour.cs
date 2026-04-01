@@ -27,8 +27,8 @@ public class KidBehaviour : MonoBehaviour
     [SerializeField] AudioSource EffectsSource;
 
     // Random pitch adjustment range.
-    [SerializeField] float LowPitchRange = .95f;
-    [SerializeField] float HighPitchRange = 1.05f;
+    [SerializeField] float LowPitchRange = .85f;
+    [SerializeField] float HighPitchRange = 1.15f;
     [SerializeField] private AudioClip[] Sadclips;
     [Header("Happiness")]
     private float _happiness = 100.0f;
@@ -213,7 +213,12 @@ public class KidBehaviour : MonoBehaviour
     {
         int randomIndex = Random.Range(0, clips.Length);
         float randomPitch = Random.Range(LowPitchRange, HighPitchRange);
-
-        SoundLimiter.Instance.PlaySound(EffectsSource, clips[randomIndex], randomPitch);
+        EffectsSource.volume = Random.Range(0.8f, 1f);
+        SoundLimiter.Instance.PlaySound(
+            "KidCry", 
+            EffectsSource,
+            clips[randomIndex],
+            randomPitch
+        );
     }
 }

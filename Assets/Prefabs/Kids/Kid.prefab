@@ -877,18 +877,18 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.565
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 21.35
-  MaxDistance: 500
+  DopplerLevel: 0
+  MinDistance: 15.88
+  MaxDistance: 67.3
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -936,7 +936,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.06111111
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26ac4d04b26e64d4292c9c425f5f9a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundLimiter
-  maxInstances: 4
+  maxInstances: 3
 --- !u!1 &8587682739204257731
 GameObject:
   m_ObjectHideFlags: 0
