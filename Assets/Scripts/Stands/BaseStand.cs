@@ -15,8 +15,18 @@ public class BaseStand : MonoBehaviour
     [SerializeField] bool _itemActive = false;
     [SerializeField] KidBehaviour _kidBehaviour;
 
+    [Header("Particle Indicators")]
+    [SerializeField] GameObject _IndicatorKid;
+
+    
+
     public bool HasKid { get { return _kidBehaviour != null; } }
 
+
+    public void ShowIndicator(bool showIndicator) 
+    {
+        _IndicatorKid.SetActive(showIndicator);
+    }
     public void PlaceItem() 
     {
         _itemActive = false;
