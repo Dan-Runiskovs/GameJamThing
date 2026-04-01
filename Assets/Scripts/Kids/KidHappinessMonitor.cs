@@ -1,9 +1,13 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KidHappinessMonitor : MonoBehaviour
 {
+    [SerializeField]
+    private Slider _happinessSlider;
+
     private readonly List<KidBehaviour> _kidsAlive = new();
 
     private float _avgHappiness = 0.0f;
@@ -31,5 +35,6 @@ public class KidHappinessMonitor : MonoBehaviour
         }
 
         _avgHappiness /= _kidsAlive.Count;
+        _happinessSlider.value = _avgHappiness;
     }
 }
