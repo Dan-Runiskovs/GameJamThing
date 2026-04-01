@@ -3,15 +3,6 @@ using UnityEngine;
 
 public class BaseStand : MonoBehaviour
 {
-    public enum StandType
-    {
-        Balloon,
-        Cake,
-        Pinata,
-    }
-
-
-
     [Header("Stand")]
     [SerializeField] ItemScript.ItemTypes _standItem;
     [SerializeField] QuickTimeEventBase _QTE;
@@ -25,23 +16,6 @@ public class BaseStand : MonoBehaviour
     [SerializeField] KidBehaviour _kidBehaviour;
 
     public bool HasKid { get { return _kidBehaviour != null; } }
-
-
-
-
-
-
-
-
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
-
 
     public void PlaceItem() 
     {
