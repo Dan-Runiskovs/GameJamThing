@@ -1189,8 +1189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUIManager
   _UpArrowUI: {fileID: 3619955035355855818}
   _DownArrowUI: {fileID: 8909177205508447247}
-  _LeftArrowUI: {fileID: 2956761179069217234}
-  _RightArrowUI: {fileID: 7920163389644652678}
+  _LeftArrowUI: {fileID: 7920163389644652678}
+  _RightArrowUI: {fileID: 2956761179069217234}
   _XUI: {fileID: 2639183593665429636}
   _TriUI: {fileID: 6189733456454851413}
 --- !u!1 &7920163389644652678

@@ -8,7 +8,7 @@ public class KidBehaviour : MonoBehaviour
 {
     [Header("Needs")]
     public List<BaseStand> stands = new List<BaseStand>();
-    private ItemScript.ItemTypes _itemWanted;
+    [SerializeField] private ItemScript.ItemTypes _itemWanted;
     public ItemScript.ItemTypes ItemWanted
     {
         get { return _itemWanted; }
