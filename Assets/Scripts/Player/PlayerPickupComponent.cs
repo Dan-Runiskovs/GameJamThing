@@ -110,7 +110,6 @@ public class PlayerPickupComponent : MonoBehaviour
 
     private void TryPlace() 
     {
-        if (!_heldItemScript.isValid) return;
         if (_ClosestStand == null || _heldItem == null || _heldItemScript == null) return;
 
         if ((_ClosestStand.transform.position - transform.position).sqrMagnitude > 100)
@@ -121,7 +120,22 @@ public class PlayerPickupComponent : MonoBehaviour
 
         var itemType = _ClosestStand.StandItemType;
 
-        if (_heldItemScript.ItemType == itemType && _ClosestStand.HasKid) 
+        if (_ClosestStand.IsTrashCan) 
+        {
+
+
+                Debug.Log("Place Item in trash");
+                _ClosestStand.PlaceItem();
+                //_ClosestStand.StartQTE(transform.parent.gameObject);
+                _heldItemScript.UnCarry(Vector3.zero);
+                _heldItem.transform.SetParent(null);
+                Destroy(_heldItem);
+                _heldItem = null;
+                _heldItemScript = null;
+                return;
+            
+        }
+        else if (_heldItemScript.ItemType == itemType && _ClosestStand.HasKid && _heldItemScript.isValid) 
         {
             Debug.Log("Place Item");
             _ClosestStand.PlaceItem();
