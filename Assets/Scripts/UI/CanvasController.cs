@@ -17,7 +17,7 @@ public class CanvasController : MonoBehaviour
         if (!enabled) return;
 
         transform.LookAt(
-            transform.position + _camera.transform.rotation * Vector3.back,
+            transform.position + _camera.transform.rotation * Vector3.forward,
             _camera.transform.rotation * Vector3.up
         );
 

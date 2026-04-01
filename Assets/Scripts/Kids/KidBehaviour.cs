@@ -98,6 +98,7 @@ public class KidBehaviour : MonoBehaviour
         int randIdx = Random.Range(0, stands.Count);
         _itemWanted = stands.ElementAt(randIdx).StandItemType;
         Debug.Log("I want: " + _itemWanted.ToString());
+        this.GetComponentInChildren<KidUIController>().Complain(ItemWanted);
 
         // --- Make kid visually sad ---
         foreach (var part in this.GetComponentsInChildren<MeshRenderer>())
@@ -115,6 +116,7 @@ public class KidBehaviour : MonoBehaviour
         _happiness = extent;
 
         StopAgent(false);
+        this.GetComponentInChildren<KidUIController>().StopComplaining();
 
         // --- Make kid visually happy ---
         foreach (var part in this.GetComponentsInChildren<MeshRenderer>())

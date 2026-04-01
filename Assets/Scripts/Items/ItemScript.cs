@@ -22,6 +22,8 @@ public class ItemScript : MonoBehaviour
         Balloon,
         Cake,
         Pinata,
+        Lemonade,
+        Music,
         GlitterBomb
         // whatever
     }
