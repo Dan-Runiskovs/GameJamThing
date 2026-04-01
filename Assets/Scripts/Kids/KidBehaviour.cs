@@ -78,7 +78,6 @@ public class KidBehaviour : MonoBehaviour
     private void MakeSad()
     {
         // --- set values ----
-        _happiness = 0.0f;
         _isSad = true;
 
         StopAgent(true);
