@@ -46,6 +46,8 @@ public class PlayerPickupComponent : MonoBehaviour
         _playerActionMap.FindAction("Throw").started += context => StartThrow();
         _playerActionMap.FindAction("Throw").canceled += context => TryThrow();
         _playerActionMap.FindAction("Use").started += context => TryUse();
+        
+
         _playerUIManager = transform.parent.GetComponentInChildren<PlayerUIManager>();
     }
 
@@ -191,7 +193,8 @@ public class PlayerPickupComponent : MonoBehaviour
         {
             Debug.Log("Place Item");
             _ClosestStand.PlaceItem();
-            _ClosestStand.StartQTE(transform.parent.gameObject);
+            //_ClosestStand.StartQTE(transform.parent.gameObject);
+            _ClosestStand.ShowItemIndicator(false);
             _heldItemScript.UnCarry(Vector3.zero);
             _heldItem.transform.SetParent(null);
             Destroy(_heldItem);
@@ -261,7 +264,10 @@ public class PlayerPickupComponent : MonoBehaviour
         if (_heldItemScript == null) return null;
         foreach(BaseStand stand in FindObjectsByType<BaseStand>(FindObjectsSortMode.None)) 
         {
+
             if (stand.StandItemType == _heldItemScript.GetItemType()) return stand;
+            if (!_heldItemScript.isValid && stand.IsTrashCan) return stand;
+
         }
         return null;
     }
@@ -291,9 +297,10 @@ public class PlayerPickupComponent : MonoBehaviour
 
         RemoveItemFromPickUpRange(item);
 
+        if (_heldItemScript.GetItemType() == ItemScript.ItemTypes.Box) return;
         _SelectedStand = FindItemStand();
 
-        _SelectedStand.ShowItemIndicator(true);
+        _SelectedStand?.ShowItemIndicator(true);
     }
     private void PickUpKid(KidBehaviour kid)
     {
@@ -332,7 +339,7 @@ public class PlayerPickupComponent : MonoBehaviour
         _animator.SetBool("Grabbing", false);
         _animator.SetTrigger("Push");
 
-        _SelectedStand.ShowItemIndicator(false);
+        _SelectedStand?.ShowItemIndicator(false);
 
         _heldItem = null;
         _heldItemScript = null;
