@@ -173,6 +173,8 @@ MonoBehaviour:
   - {fileID: 1861430909}
   - {fileID: 1546476274}
   - {fileID: 1106098388}
+  countdownText: {fileID: 89352920}
+  startCountdownDuration: 6
 --- !u!1 &89352918
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,12 +187,12 @@ GameObject:
   - component: {fileID: 89352921}
   - component: {fileID: 89352920}
   m_Layer: 5
-  m_Name: noControllerText
+  m_Name: CountdownText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &89352919
 RectTransform:
   m_ObjectHideFlags: 0
@@ -207,8 +209,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 300}
+  m_AnchoredPosition: {x: 0, y: -450}
+  m_SizeDelta: {x: 1500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &89352920
 MonoBehaviour:
@@ -232,8 +234,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Connect at least 1 controller to play the game.
 
-    (1-4 controllers
-    max.)'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -260,8 +261,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

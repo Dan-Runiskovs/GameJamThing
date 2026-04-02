@@ -15,7 +15,7 @@ public class PlayerSelectionManager : MonoBehaviour
 
     //Countdown
     [SerializeField] private TextMeshProUGUI countdownText;
-    [SerializeField] private float startCountdownDuration = 3f;
+    [SerializeField] private int startCountdownDuration = 3;
 
     private bool countdownActive = false;
     private float countdownTimer = 0f;
@@ -55,7 +55,7 @@ public class PlayerSelectionManager : MonoBehaviour
                     ToggleReady(existingSlot);
                 }
             }
-        }
+        }  
 
         HandleCountdown();
     }
@@ -126,10 +126,10 @@ public class PlayerSelectionManager : MonoBehaviour
                 assignedPads[i] = null;
                 readyStates[i] = false;
                 UpdateSlotVisual(i);
-            }
-        }
 
-        CancelCountdown();
+                CancelCountdown();
+            }
+        }        
     }
 
     private void RefreshAllSlots()
@@ -219,16 +219,23 @@ public class PlayerSelectionManager : MonoBehaviour
 
             countdownTimer -= Time.deltaTime;
 
+          
             if (countdownText != null)
-            {
-                countdownText.text = "Starting in " + Mathf.CeilToInt(countdownTimer).ToString();
+            {              
+               countdownText.text = "Starting in " + countdownTimer.ToString("0.0");
             }
 
             if (countdownTimer <= 0f)
             {
+                Debug.Log("should load new scene.");
+                countdownActive = false;
+
+                if (countdownText != null)
+                    countdownText.gameObject.SetActive(false);
+
                 if (_optionsManager != null)
                 {
-                    _optionsManager.PlayGame();
+                    _optionsManager.LoadGame();
                 }
                 else
                 {
@@ -240,6 +247,8 @@ public class PlayerSelectionManager : MonoBehaviour
         {
             CancelCountdown();
         }
+
+        Debug.Log("Countdown active: " + countdownActive + " | Timer: " + countdownTimer);
     }
 
     private void CancelCountdown()

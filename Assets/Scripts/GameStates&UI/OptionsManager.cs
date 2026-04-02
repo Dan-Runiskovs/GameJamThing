@@ -30,12 +30,12 @@ public class OptionsManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void PlayGame()
+    public void LoadPlayerSelectionHub()
     {
         SceneManager.LoadScene(2);
     }
 
-    public void RestartGame()
+    public void LoadGame()
     {
         SceneManager.LoadScene(0);
     }
