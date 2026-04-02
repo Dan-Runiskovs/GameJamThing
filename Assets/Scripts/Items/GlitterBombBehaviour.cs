@@ -4,8 +4,7 @@ using UnityEngine;
 public class GlitterBombBehaviour : MonoBehaviour
 {
     private float _internalTimer = 0;
-    [SerializeField]
-    AudioSource _audioSourceExplosion;
+
     [SerializeField]
     private float _explodeTime = 3;
     [SerializeField] private AudioSource _audioSource;
@@ -51,9 +50,7 @@ public class GlitterBombBehaviour : MonoBehaviour
     private void Explode()
     {
         Debug.Log("Boom");
-
         Collider[] hits = Physics.OverlapSphere(transform.position, 3.0f);
-        _audioSourceExplosion.Play();
         foreach (var hit in hits)
         {
 
@@ -62,6 +59,7 @@ public class GlitterBombBehaviour : MonoBehaviour
             Vector3 velocity = hit.transform.position - transform.position;
 
             GetComponent<ParticleSystem>().PlayParticle();
+         
 
             hit.attachedRigidbody?.AddForce(velocity*100f, ForceMode.Force);
 
@@ -78,7 +76,6 @@ public class GlitterBombBehaviour : MonoBehaviour
             Debug.Log("There was: " + item.name);
             item.Invalidate();
         }
-
-        Destroy(gameObject);
+            Destroy(gameObject);
     }
 }
