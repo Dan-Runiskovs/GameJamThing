@@ -51,6 +51,11 @@ public class KidBehaviour : MonoBehaviour
     private BaseStand _ClosestNeedsStand;
     public BaseStand GetNeededStand { get { return _ClosestNeedsStand; } }
 
+    //Crying VFX
+    [SerializeField] private GameObject _cryingVFXPrefab;
+    [SerializeField] private Transform _cryingVFXSpawnTransform1; //Kid's empty "EyeSocket" children gameObjects -- one eye
+    [SerializeField] private Transform _cryingVFXSpawnTransform2; //Kid's empty "EyeSocket" children gameObjects -- other eye
+
     public BaseStand GetClosestNeedsStand() 
     {
         foreach (BaseStand stand in FindObjectsByType<BaseStand>(FindObjectsSortMode.None)) 
@@ -136,7 +141,7 @@ public class KidBehaviour : MonoBehaviour
         Debug.Log("I want: " + _itemWanted.ToString());
         this.GetComponentInChildren<KidUIController>().Complain(ItemWanted);
 
-        // --- Make kid visually sad ---
+        // --- Make kid audibly sad ---
         RandomSoundEffect(Sadclips);
         foreach (var part in this.GetComponentsInChildren<MeshRenderer>())
         {
@@ -144,6 +149,13 @@ public class KidBehaviour : MonoBehaviour
       
 
             part.material = _sadMaterial;
+        }
+        // --- Make kid visually sad ---
+
+        if (_cryingVFXPrefab != null && _cryingVFXSpawnTransform1 != null && _cryingVFXSpawnTransform2 != null)
+        {
+            Instantiate(_cryingVFXPrefab, _cryingVFXSpawnTransform1.position, Quaternion.identity, _cryingVFXSpawnTransform1);
+            Instantiate(_cryingVFXPrefab, _cryingVFXSpawnTransform2.position, Quaternion.identity, _cryingVFXSpawnTransform2);
         }
 
         _ClosestNeedsStand = GetClosestNeedsStand();
