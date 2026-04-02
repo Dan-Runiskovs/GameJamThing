@@ -457,7 +457,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2048132635}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: LoadPlayerSelectionHub
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
