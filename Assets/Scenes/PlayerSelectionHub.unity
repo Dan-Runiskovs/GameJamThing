@@ -329,7 +329,6 @@ GameObject:
   m_Component:
   - component: {fileID: 97807997}
   - component: {fileID: 97807996}
-  - component: {fileID: 97807995}
   - component: {fileID: 97807994}
   m_Layer: 0
   m_Name: previewCamera_P3
@@ -382,14 +381,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &97807995
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97807993}
-  m_Enabled: 1
 --- !u!20 &97807996
 Camera:
   m_ObjectHideFlags: 0
@@ -1226,7 +1217,6 @@ GameObject:
   m_Component:
   - component: {fileID: 719888366}
   - component: {fileID: 719888365}
-  - component: {fileID: 719888364}
   - component: {fileID: 719888363}
   m_Layer: 0
   m_Name: previewCamera_P1
@@ -1279,14 +1269,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &719888364
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719888362}
-  m_Enabled: 1
 --- !u!20 &719888365
 Camera:
   m_ObjectHideFlags: 0
@@ -3256,7 +3238,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1997906643}
   - component: {fileID: 1997906642}
-  - component: {fileID: 1997906641}
   - component: {fileID: 1997906640}
   m_Layer: 0
   m_Name: previewCamera_P2
@@ -3309,14 +3290,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &1997906641
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997906639}
-  m_Enabled: 1
 --- !u!20 &1997906642
 Camera:
   m_ObjectHideFlags: 0
@@ -3545,7 +3518,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2125556501}
   - component: {fileID: 2125556500}
-  - component: {fileID: 2125556499}
   - component: {fileID: 2125556498}
   m_Layer: 0
   m_Name: previewCamera_P4
@@ -3598,14 +3570,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &2125556499
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125556497}
-  m_Enabled: 1
 --- !u!20 &2125556500
 Camera:
   m_ObjectHideFlags: 0
