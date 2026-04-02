@@ -4,16 +4,48 @@ using UnityEngine;
 public class GlitterBombBehaviour : MonoBehaviour
 {
     private float _internalTimer = 0;
-
+    [SerializeField]
+    AudioSource _audioSourceExplosion;
     [SerializeField]
     private float _explodeTime = 3;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private float _startTickInterval = 1f;
+    [SerializeField] private float _minTickInterval = 0.1f; // fastest it can go
 
-    // Update is called once per frame
+    private float _tickTimer = 0f;
+    private float _tickInterval = 1f;
+    private float _currentTickInterval;
+
+    void Start()
+    {
+        _currentTickInterval = _startTickInterval;
+    }
+
     void Update()
     {
-        _internalTimer += Time.deltaTime;
+        float delta = Time.deltaTime;
 
-        if (_internalTimer >= _explodeTime) Explode();
+        _internalTimer += delta;
+        _tickTimer += delta;
+
+        // Play tick sound with increasing speed
+        if (_tickTimer >= _currentTickInterval)
+        {
+            _audioSource.Play();
+            _tickTimer = 0f;
+
+            // Decrease interval each tick (faster beeping)
+            _currentTickInterval *= 0.9f;
+
+            // Clamp so it doesn't go insane
+            if (_currentTickInterval < _minTickInterval)
+                _currentTickInterval = _minTickInterval;
+        }
+
+        if (_internalTimer >= _explodeTime)
+        {
+            Explode();
+        }
     }
 
     private void Explode()
@@ -21,7 +53,7 @@ public class GlitterBombBehaviour : MonoBehaviour
         Debug.Log("Boom");
 
         Collider[] hits = Physics.OverlapSphere(transform.position, 3.0f);
-
+        _audioSourceExplosion.Play();
         foreach (var hit in hits)
         {
 
