@@ -29,6 +29,7 @@ public class PlayerPickupComponent : MonoBehaviour
 
     private BaseStand _ClosestStand;
     private BaseStand _ClosestKidStand;
+    private BaseStand _SelectedStand;
 
     private PlayerUIManager _playerUIManager;
     [SerializeField]private AudioSource _audioSource;
@@ -255,6 +256,17 @@ public class PlayerPickupComponent : MonoBehaviour
     }
 
 
+    private BaseStand FindItemStand() 
+    {
+        if (_heldItemScript == null) return null;
+        foreach(BaseStand stand in FindObjectsByType<BaseStand>(FindObjectsSortMode.None)) 
+        {
+            if (stand.StandItemType == _heldItemScript.GetItemType()) return stand;
+        }
+        return null;
+    }
+
+
     #region Items
     //Picks up the given item
     private void PickUpItem(ItemScript item)
@@ -274,7 +286,14 @@ public class PlayerPickupComponent : MonoBehaviour
 
         Debug.Log("Picked up: " + _heldItemScript.name);
         _animator.SetBool("Grabbing", _isHolding);
+
+
+
         RemoveItemFromPickUpRange(item);
+
+        _SelectedStand = FindItemStand();
+
+        _SelectedStand.ShowItemIndicator(true);
     }
     private void PickUpKid(KidBehaviour kid)
     {
@@ -283,7 +302,7 @@ public class PlayerPickupComponent : MonoBehaviour
         _heldKidBehaviour = kid;
         _heldKid = kid.gameObject;
 
-        _heldKidBehaviour.GetNeededStand.ShowIndicator(true);
+        _heldKidBehaviour.GetNeededStand.ShowKidIndicator(true);
 
         Transform parentSocket = _itemSocket;
 
@@ -313,6 +332,8 @@ public class PlayerPickupComponent : MonoBehaviour
         _animator.SetBool("Grabbing", false);
         _animator.SetTrigger("Push");
 
+        _SelectedStand.ShowItemIndicator(false);
+
         _heldItem = null;
         _heldItemScript = null;
     }
@@ -321,7 +342,7 @@ public class PlayerPickupComponent : MonoBehaviour
         if(_heldKid == null || _heldKidBehaviour == null) return;
 
 
-        _heldKidBehaviour.GetNeededStand.ShowIndicator(false);
+        _heldKidBehaviour.GetNeededStand.ShowKidIndicator(false);
         _heldKid.transform.SetParent(null);
 
         AddKidToRange(_heldKidBehaviour);
