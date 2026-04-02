@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8687713207460324766}
   - component: {fileID: 3140152304674389938}
   - component: {fileID: 4286146985295739293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Hat04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
