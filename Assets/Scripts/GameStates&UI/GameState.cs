@@ -14,6 +14,8 @@ public class GameState : MonoBehaviour
     private float _sadTimeLimit = 10.0f;
     private bool _isSadTimeTicking = false;
 
+    [SerializeField] private OptionsManager _optionsManager;
+
     public enum GameStateEnum
     {
         Win,
@@ -65,13 +67,20 @@ public class GameState : MonoBehaviour
             {
                 _sadTimerText.SetText("0!");
                 _gameState = GameStateEnum.Loss;
-               // OptionsManager(
+                _optionsManager.TurnWinMenuOff();
+
+                _optionsManager.TurnGameOverMenuOn();             
             }
         }
 
         if (_gameTimer >= _timeToPlay)
         {
+            Debug.Log("WInMenu shoudl show up");
             _gameState = GameStateEnum.Win;
+            _optionsManager.TurnGameOverMenuOff();
+
+            _optionsManager.TurnWinMenuOn();
+           
         }
     }
 }
