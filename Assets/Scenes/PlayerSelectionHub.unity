@@ -163,9 +163,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53490e6b524f00a4c81b3d7303b32ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSelectionManager
-  playerSlotPrefab: {fileID: 3054537838125909693, guid: 142d468b8fe68094390a0e3ede4e471e, type: 3}
-  playerSlotParent: {fileID: 1946571213}
-  noControllerText: {fileID: 89352920}
+  playerSlots:
+  - {fileID: 816977875}
+  - {fileID: 1357695735}
+  - {fileID: 1675384614}
+  - {fileID: 639505253}
+  slotTexts:
+  - {fileID: 762738422}
+  - {fileID: 1861430909}
+  - {fileID: 1546476274}
+  - {fileID: 1106098388}
 --- !u!1 &89352918
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &639505254
 RectTransform:
   m_ObjectHideFlags: 0
@@ -783,7 +790,7 @@ GameObject:
   - component: {fileID: 762738423}
   - component: {fileID: 762738422}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -928,7 +935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &816977876
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1182,7 +1189,7 @@ GameObject:
   - component: {fileID: 1106098389}
   - component: {fileID: 1106098388}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1327,7 +1334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1357695736
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1454,7 +1461,7 @@ GameObject:
   - component: {fileID: 1546476275}
   - component: {fileID: 1546476274}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1599,7 +1606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1675384615
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1731,7 +1738,7 @@ GameObject:
   - component: {fileID: 1861430910}
   - component: {fileID: 1861430909}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1918,7 +1925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1946571213
 RectTransform:
   m_ObjectHideFlags: 0

@@ -16,15 +16,8 @@ public class GamepadDebugger : MonoBehaviour
 
             for (int i = 0; i < Gamepad.all.Count; i++)
             {
-                Gamepad pad = Gamepad.all[i];
-
-                Debug.Log(
-                    $"Index {i} | Name: {pad.displayName} | " +
-                    $"Layout: {pad.layout} | " +
-                    $"DeviceId: {pad.deviceId} | " +
-                    $"Interface: {pad.description.interfaceName} | " +
-                    $"Product: {pad.description.product}"
-                );
+                var pad = Gamepad.all[i];
+                Debug.Log($"Index {i} | Name: {pad.displayName} | Layout: {pad.layout} | DeviceId: {pad.deviceId} | Interface: {pad.description.interfaceName} | Product: {pad.description.product}");
             }
         }
 
@@ -32,7 +25,7 @@ public class GamepadDebugger : MonoBehaviour
         {
             if (Gamepad.all[i].buttonSouth.wasPressedThisFrame)
             {
-                Debug.Log($"A/Cross pressed on index {i} | {Gamepad.all[i].displayName}");
+                Debug.Log($"A/Cross pressed on index {i}");
             }
         }
     }

@@ -1,145 +1,253 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using TMPro;
+
 
 public class PlayerSelectionManager : MonoBehaviour
 {
+    [Header("Fixed player slots in scene, left to right")]
+    [SerializeField] private GameObject[] playerSlots = new GameObject[4];
+    [SerializeField] private TextMeshProUGUI[] slotTexts = new TextMeshProUGUI[4];
 
-    [Header("UI")]
-    [SerializeField] private GameObject playerSlotPrefab;
-    [SerializeField] private Transform playerSlotParent;
-    [SerializeField] private TextMeshProUGUI noControllerText;
+    private Gamepad[] assignedPads = new Gamepad[4];
+    private bool[] readyStates = new bool[4];
 
-    private readonly List<Gamepad> connectedGamepads = new List<Gamepad>();
-    private readonly List<bool> readyStates = new List<bool>();
-    private readonly List<GameObject> playerSlots = new List<GameObject>();
+    //Countdown
+    [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private float startCountdownDuration = 3f;
 
+    private bool countdownActive = false;
+    private float countdownTimer = 0f;
+
+    private OptionsManager _optionsManager;
     private void Start()
     {
-        InputSystem.onDeviceChange += OnDeviceChange;
-        InitializePlayerSlots();
-    }
+        _optionsManager = FindFirstObjectByType<OptionsManager>();
+        RefreshAllSlots();        
 
-    private void OnDestroy()
-    {
-        InputSystem.onDeviceChange -= OnDeviceChange;
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(false);
+        }
+        
     }
 
     private void Update()
     {
-        for (int i = 0; i < connectedGamepads.Count; i++)
-        {
-            Gamepad gamepad = connectedGamepads[i];
-
-            if (gamepad == null) continue;
-
-            if (gamepad.buttonSouth.wasPressedThisFrame)
-            {
-                ToggleReady(i);
-            }
-        }
-
-        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            Debug.Log("Gamepad.all.Count = " + Gamepad.all.Count);
-        }
+        RemoveDisconnectedPads();
 
         for (int i = 0; i < Gamepad.all.Count; i++)
         {
-            if (Gamepad.all[i].buttonSouth.wasPressedThisFrame)
+            Gamepad pad = Gamepad.all[i];
+            if (pad == null) continue;
+
+            if (pad.buttonSouth.wasPressedThisFrame)
             {
-                Debug.Log("A pressed on gamepad index: " + i);
+                int existingSlot = GetSlotIndexForPad(pad);
+
+                if (existingSlot == -1)
+                {
+                    AssignPadToNextFreeSlot(pad);
+                }
+                else
+                {
+                    ToggleReady(existingSlot);
+                }
             }
         }
 
+        HandleCountdown();
     }
 
-    private void InitializePlayerSlots()
+    private int GetSlotIndexForPad(Gamepad pad)
     {
-        for (int i = 0; i < playerSlots.Count; i++)
+        for (int i = 0; i < assignedPads.Length; i++)
         {
-            if (playerSlots[i] != null)
-                Destroy(playerSlots[i]);
+            if (assignedPads[i] == pad)
+                return i;
         }
 
-        playerSlots.Clear();
-        readyStates.Clear();
-        connectedGamepads.Clear();
+        return -1;
+    }
 
-        for (int i = 0; i < Gamepad.all.Count && connectedGamepads.Count < 4; i++)
+    private void AssignPadToNextFreeSlot(Gamepad pad)
+    {
+        for (int i = 0; i < assignedPads.Length; i++)
         {
-            connectedGamepads.Add(Gamepad.all[i]);
-        }
-
-        Debug.Log("Detected gamepads in selection scene: " + connectedGamepads.Count);
-
-        if (noControllerText != null)
-            noControllerText.gameObject.SetActive(connectedGamepads.Count == 0);
-
-        if (connectedGamepads.Count == 0)
-            return;
-
-        for (int i = 0; i < connectedGamepads.Count; i++)
-        {
-            readyStates.Add(false);
-
-            GameObject slot = Instantiate(playerSlotPrefab, playerSlotParent);
-            playerSlots.Add(slot);
-
-            Button button = slot.GetComponent<Button>();
-            TextMeshProUGUI text = slot.GetComponentInChildren<TextMeshProUGUI>();
-
-            if (button == null)
+            if (assignedPads[i] == null)
             {
-                Debug.LogError("PlayerSlotButton prefab is missing a Button on the root object.");
-                continue;
+                assignedPads[i] = pad;
+                readyStates[i] = false;
+                UpdateSlotVisual(i);
+
+                Debug.Log($"Assigned {pad.displayName} to slot {i + 1}");
+                return;
+            }
+        }
+
+        Debug.Log("No free player slots left.");
+    }
+
+    private void ToggleReady(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= readyStates.Length) return;
+        if (assignedPads[slotIndex] == null) return;
+
+        readyStates[slotIndex] = !readyStates[slotIndex];
+        UpdateSlotVisual(slotIndex);
+
+        CancelCountdown();
+
+        Debug.Log($"Player {slotIndex + 1} ready = {readyStates[slotIndex]}");
+    }
+
+    private void RemoveDisconnectedPads()
+    {
+        for (int i = 0; i < assignedPads.Length; i++)
+        {
+            if (assignedPads[i] == null) continue;
+
+            bool stillConnected = false;
+
+            for (int j = 0; j < Gamepad.all.Count; j++)
+            {
+                if (Gamepad.all[j] == assignedPads[i])
+                {
+                    stillConnected = true;
+                    break;
+                }
             }
 
-            if (text == null)
+            if (!stillConnected)
             {
-                Debug.LogError("PlayerSlotButton prefab is missing a TextMeshProUGUI child.");
-                continue;
+                Debug.Log($"Player {i + 1} controller disconnected. Clearing slot.");
+
+                assignedPads[i] = null;
+                readyStates[i] = false;
+                UpdateSlotVisual(i);
+            }
+        }
+
+        CancelCountdown();
+    }
+
+    private void RefreshAllSlots()
+    {
+        for (int i = 0; i < playerSlots.Length; i++)
+        {
+            UpdateSlotVisual(i);
+        }
+    }
+
+    private void UpdateSlotVisual(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= slotTexts.Length) return;
+        if (slotTexts[slotIndex] == null) return;
+
+        if (assignedPads[slotIndex] == null)
+        {
+            slotTexts[slotIndex].text = "Press A to Join";
+        }
+        else
+        {
+            string readyText = readyStates[slotIndex] ? "READY" : "NOT READY";
+            slotTexts[slotIndex].text = $"Player {slotIndex + 1}\n{readyText}";
+        }
+    }
+
+    public int GetJoinedPlayerCount()
+    {
+        int count = 0;
+
+        for (int i = 0; i < assignedPads.Length; i++)
+        {
+            if (assignedPads[i] != null)
+                count++;
+        }
+
+        return count;
+    }
+
+    public int GetReadyPlayerCount()
+    {
+        int count = 0;
+
+        for (int i = 0; i < readyStates.Length; i++)
+        {
+            if (assignedPads[i] != null && readyStates[i])
+                count++;
+        }
+
+        return count;
+    }
+
+    public bool AreAllJoinedPlayersReady()
+    {
+        int joined = 0;
+        int ready = 0;
+
+        for (int i = 0; i < assignedPads.Length; i++)
+        {
+            if (assignedPads[i] != null)
+            {
+                joined++;
+
+                if (readyStates[i])
+                    ready++;
+            }
+        }
+
+        return joined > 0 && joined == ready;
+    }
+
+    //Countdown
+    private void HandleCountdown()
+    {
+        bool shouldCountDown = AreAllJoinedPlayersReady();
+
+        if (shouldCountDown)
+        {
+            if (!countdownActive)
+            {
+                countdownActive = true;
+                countdownTimer = startCountdownDuration;
+
+                if (countdownText != null)
+                    countdownText.gameObject.SetActive(true);
             }
 
-            int playerIndex = i;
+            countdownTimer -= Time.deltaTime;
 
-            button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => ToggleReady(playerIndex));
+            if (countdownText != null)
+            {
+                countdownText.text = "Starting in " + Mathf.CeilToInt(countdownTimer).ToString();
+            }
 
-            UpdateSlotText(playerIndex);
+            if (countdownTimer <= 0f)
+            {
+                if (_optionsManager != null)
+                {
+                    _optionsManager.PlayGame();
+                }
+                else
+                {
+                    Debug.LogError("OptionsManager not found in scene.");
+                }
+            }
         }
-    }
-
-    private void ToggleReady(int playerIndex)
-    {
-        if (playerIndex < 0 || playerIndex >= readyStates.Count)
-            return;
-
-        readyStates[playerIndex] = !readyStates[playerIndex];
-        UpdateSlotText(playerIndex);
-
-        Debug.Log($"Player {playerIndex + 1} ready = {readyStates[playerIndex]}");
-    }
-
-    private void UpdateSlotText(int playerIndex)
-    {
-        if (playerIndex < 0 || playerIndex >= playerSlots.Count)
-            return;
-
-        TextMeshProUGUI text = playerSlots[playerIndex].GetComponentInChildren<TextMeshProUGUI>();
-        if (text == null) return;
-
-        string state = readyStates[playerIndex] ? "READY" : "NOT READY";
-        text.text = $"Player {playerIndex + 1}\n{state}";
-    }
-
-    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
-    {
-        if (device is Gamepad)
+        else
         {
-            InitializePlayerSlots();
+            CancelCountdown();
         }
+    }
+
+    private void CancelCountdown()
+    {
+        countdownActive = false;
+        countdownTimer = startCountdownDuration;
+
+        if (countdownText != null)
+            countdownText.gameObject.SetActive(false);
     }
 }
