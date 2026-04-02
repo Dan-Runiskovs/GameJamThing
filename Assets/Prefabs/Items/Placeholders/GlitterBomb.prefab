@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af81f773d6bbe8847898067f8453aa8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemScript
+  _isValid: 0
   _invalidMaterial: {fileID: 2100000, guid: c6f922174365edd4eab1ac0da2cdb162, type: 2}
   Type: 4
 --- !u!54 &844391061443169661
