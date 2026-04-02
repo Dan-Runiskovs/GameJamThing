@@ -19,7 +19,8 @@ public class BaseStand : MonoBehaviour
     [SerializeField] GameObject _IndicatorKid;
     [SerializeField] GameObject _IndicatorItem;
 
-    
+
+    [SerializeField] AudioSource _audioSource;
 
     public bool HasKid { get { return _kidBehaviour != null; } }
 
@@ -45,15 +46,17 @@ public class BaseStand : MonoBehaviour
         playerObject?.GetComponent<PlayerController>().EnableMovement(false);
         Debug.Log("QTE");
         _QTE?.StartEvent(playerObject, this);
-
+       
 
 
     }
 
     public void QTESuccess() 
     {
+
         _kidBehaviour?.Satisfy();
         _kidBehaviour = null;
+        _audioSource.Play();
     }
 
 
