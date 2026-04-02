@@ -45,7 +45,7 @@ public class BaseStand : MonoBehaviour
     {
         playerObject?.GetComponent<PlayerController>().EnableMovement(false);
         Debug.Log("QTE");
-        _QTE?.StartEvent(playerObject, this);
+        QTESuccess();
 
 
 
