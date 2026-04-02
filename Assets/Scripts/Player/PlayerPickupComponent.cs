@@ -264,9 +264,9 @@ public class PlayerPickupComponent : MonoBehaviour
         if (_heldItemScript == null) return null;
         foreach(BaseStand stand in FindObjectsByType<BaseStand>(FindObjectsSortMode.None)) 
         {
-
-            if (stand.StandItemType == _heldItemScript.GetItemType()) return stand;
             if (!_heldItemScript.isValid && stand.IsTrashCan) return stand;
+            if (stand.StandItemType == _heldItemScript.GetItemType()) return stand;
+
 
         }
         return null;
