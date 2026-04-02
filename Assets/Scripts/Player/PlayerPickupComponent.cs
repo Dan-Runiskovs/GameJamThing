@@ -2,7 +2,7 @@ using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Progress;
+
 
 public class PlayerPickupComponent : MonoBehaviour
 {
