@@ -180,7 +180,8 @@ public class PlayerPickupComponent : MonoBehaviour
 
                 Debug.Log("Place Item in trash");
                 _ClosestStand.PlaceItem();
-                //_ClosestStand.StartQTE(transform.parent.gameObject);
+            //_ClosestStand.StartQTE(transform.parent.gameObject);
+                _SelectedStand?.ShowItemIndicator(false);
                 _heldItemScript.UnCarry(Vector3.zero);
                 _heldItem.transform.SetParent(null);
                 Destroy(_heldItem);
@@ -193,8 +194,8 @@ public class PlayerPickupComponent : MonoBehaviour
         {
             Debug.Log("Place Item");
             _ClosestStand.PlaceItem();
-            //_ClosestStand.StartQTE(transform.parent.gameObject);
-            _ClosestStand.ShowItemIndicator(false);
+            _ClosestStand.StartQTE(transform.parent.gameObject);
+            _SelectedStand?.ShowItemIndicator(false);
             _heldItemScript.UnCarry(Vector3.zero);
             _heldItem.transform.SetParent(null);
             Destroy(_heldItem);
@@ -264,8 +265,11 @@ public class PlayerPickupComponent : MonoBehaviour
         if (_heldItemScript == null) return null;
         foreach(BaseStand stand in FindObjectsByType<BaseStand>(FindObjectsSortMode.None)) 
         {
-            if (!_heldItemScript.isValid && stand.IsTrashCan) return stand;
-            if (stand.StandItemType == _heldItemScript.GetItemType()) return stand;
+            if (!_heldItemScript.isValid)
+            {
+                if (stand.IsTrashCan) return stand;
+            }
+            else if (stand.StandItemType == _heldItemScript.GetItemType()) return stand;
 
 
         }

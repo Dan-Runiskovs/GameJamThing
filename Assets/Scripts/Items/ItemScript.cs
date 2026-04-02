@@ -7,7 +7,7 @@ public class ItemScript : MonoBehaviour
     private Rigidbody _rb;
     private Collider _col;
 
-    private bool _isValid = true;
+    [SerializeField] private bool _isValid = true;
 
     public bool isValid
     {
