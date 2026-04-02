@@ -1325,6 +1325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 188494356}
   - component: {fileID: 188494357}
+  - component: {fileID: 188494358}
   m_Layer: 0
   m_Name: 04_PlayerManager
   m_TagString: Untagged
@@ -1354,11 +1355,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188494355}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5ef7981a72286546ae6dbf372daa414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
+  playerPrefab: {fileID: 2352301444724391249, guid: 84516313827fe3e488c4efdc0f5acb4d, type: 3}
+  playerSpawnPoints:
+  - {fileID: 566605263}
+  - {fileID: 1258531352}
+  - {fileID: 1687278628}
+  - {fileID: 1818667899}
+--- !u!114 &188494358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188494355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3edaf8b42bfc5249bf14faa751b43a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::newPlayerSpawner
   playerPrefab: {fileID: 2352301444724391249, guid: 84516313827fe3e488c4efdc0f5acb4d, type: 3}
   playerSpawnPoints:
   - {fileID: 566605263}
@@ -7136,10 +7155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7633e8751d6a34db39a1ffbc7a0071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OptionsManager
-  nextScene: MainScene
   settingsMenu: {fileID: 94552043}
-  playerSlotPrefab: {fileID: 0}
-  playerSlotParent: {fileID: 0}
 --- !u!4 &1421741623
 Transform:
   m_ObjectHideFlags: 0

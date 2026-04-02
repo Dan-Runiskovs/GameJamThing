@@ -4,10 +4,13 @@ public class PlayerAvatarVisuals : MonoBehaviour
 {
     [Header("Body")]
     [SerializeField] private Renderer bodyRenderer;
-    [SerializeField] private Material[] bodyMaterials; // 4 skin color materials
+    [SerializeField] private Material[] bodyMaterials; 
 
-    [Header("Hats")]
-    [SerializeField] private GameObject[] hats; // 5 entries: 0 = no hat slot can be null, 1..4 = hats
+    [Header("Hat Spawning")]
+    [SerializeField] private Transform hatSocket;
+    [SerializeField] private GameObject[] hatPrefabs; //1 empty option
+
+    private GameObject currentHatInstance;
 
     public void ApplySelection(int colorIndex, int hatIndex)
     {
@@ -21,23 +24,40 @@ public class PlayerAvatarVisuals : MonoBehaviour
         if (bodyMaterials == null || bodyMaterials.Length == 0) return;
         if (colorIndex < 0 || colorIndex >= bodyMaterials.Length) return;
 
-        bodyRenderer.material = bodyMaterials[colorIndex];
+        Material[] mats = bodyRenderer.materials;
+
+        if (mats.Length < 2)
+        {
+            Debug.LogWarning("Expected at least 2 materials (eyes + body).");
+            return;
+        }
+
+        mats[1] = bodyMaterials[colorIndex]; // only changes body material
+
+        bodyRenderer.materials = mats;
     }
 
     public void ApplyHat(int hatIndex)
     {
-        if (hats == null || hats.Length == 0) return;
+        if (hatSocket == null) return;
 
-        for (int i = 0; i < hats.Length; i++)
+        // Remove old hat
+        if (currentHatInstance != null)
         {
-            if (hats[i] != null)
-                hats[i].SetActive(false);
+            Destroy(currentHatInstance);
+            currentHatInstance = null;
         }
 
-        if (hatIndex >= 0 && hatIndex < hats.Length)
-        {
-            if (hats[hatIndex] != null)
-                hats[hatIndex].SetActive(true);
-        }
+        
+        if (hatPrefabs == null || hatPrefabs.Length == 0) return;
+        if (hatIndex <= 0 || hatIndex >= hatPrefabs.Length) return;
+
+        GameObject hatPrefab = hatPrefabs[hatIndex];
+        if (hatPrefab == null) return;
+
+        currentHatInstance = Instantiate(hatPrefab, hatSocket);
+        currentHatInstance.transform.localPosition = Vector3.zero;
+        currentHatInstance.transform.localRotation = Quaternion.identity;
+        currentHatInstance.transform.localScale = Vector3.one;
     }
 }

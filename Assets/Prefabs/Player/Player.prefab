@@ -276,6 +276,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3602022654118756067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7476673834536510682}
+  m_Layer: 0
+  m_Name: HatSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7476673834536510682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3602022654118756067}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5378513497056053557}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3619955035355855818
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +474,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5916424379880814861}
+  - {fileID: 7476673834536510682}
   m_Father: {fileID: 5793144589371938525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4775494783461863342
@@ -459,6 +491,7 @@ GameObject:
   - component: {fileID: 3179391309165021944}
   - component: {fileID: 2352301444724391249}
   - component: {fileID: 5412843727961877817}
+  - component: {fileID: -1841804131012848347}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -680,6 +713,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1841804131012848347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775494783461863342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748d1d28e7412b145ba788333c8a78f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAvatarVisuals
+  bodyRenderer: {fileID: 5856803431696352052}
+  bodyMaterials:
+  - {fileID: 2100000, guid: 73cadfbbd7cab0e4f9825c114975dce9, type: 2}
+  - {fileID: 2100000, guid: 7520636774d67dd4d87abc8724f8e077, type: 2}
+  - {fileID: 2100000, guid: 7f0a8c096beb35f4d80fc9c77596dcca, type: 2}
+  - {fileID: 2100000, guid: aa9390e5450e942479a8dd16c6a2b5cc, type: 2}
+  hatSocket: {fileID: 7476673834536510682}
+  hatPrefabs:
+  - {fileID: 0}
+  - {fileID: 1807798508339699340, guid: 357084b76141daa4c8273b5a065701b4, type: 3}
+  - {fileID: 2568218056139428943, guid: eb6424441a2cd4d4bbd557238a0505ec, type: 3}
+  - {fileID: 4727534235574823052, guid: 788813808502d3b4e818b253ba5817f7, type: 3}
+  - {fileID: 1231856886074604497, guid: 3f972326acc028641918d731cf850601, type: 3}
 --- !u!1 &6189733456454851413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,6 +1574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grabbing_animation
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fbaad3e4905b6e448bc55f95a8bc5d63, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: fbaad3e4905b6e448bc55f95a8bc5d63, type: 3}
       propertyPath: m_Controller
       value: 
@@ -1528,6 +1590,11 @@ PrefabInstance:
 --- !u!95 &359004243022865271 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: fbaad3e4905b6e448bc55f95a8bc5d63, type: 3}
+  m_PrefabInstance: {fileID: 6165962102230802150}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5856803431696352052 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 348587438826855890, guid: fbaad3e4905b6e448bc55f95a8bc5d63, type: 3}
   m_PrefabInstance: {fileID: 6165962102230802150}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5916424379880814861 stripped

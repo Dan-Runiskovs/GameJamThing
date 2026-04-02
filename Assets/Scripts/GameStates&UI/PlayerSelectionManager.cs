@@ -37,12 +37,19 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         _optionsManager = FindFirstObjectByType<OptionsManager>();
 
+
+        if (GameSession.Instance != null)
+        {
+            GameSession.Instance.ClearSelections();
+        }
+
         RefreshAllSlots();
 
         if (countdownText != null)
         {
             countdownText.gameObject.SetActive(false);
         }
+
     }
 
     private void Update()
@@ -181,7 +188,7 @@ public class PlayerSelectionManager : MonoBehaviour
 
     private void RefreshAllSlots()
     {
-        for (int i = 0; i < playerSlots.Length; i++)
+        for (int i = 0; i < slotTexts.Length; i++)
         {
             UpdateSlotVisual(i);
         }
@@ -195,6 +202,15 @@ public class PlayerSelectionManager : MonoBehaviour
         if (assignedPads[slotIndex] == null)
         {
             slotTexts[slotIndex].text = "Press A to Join";
+
+            if (slotAvatarVisuals != null && slotIndex < slotAvatarVisuals.Length)
+            {
+                if (slotAvatarVisuals[slotIndex] != null)
+                {
+                    slotAvatarVisuals[slotIndex].ApplySelection(0, 0);
+                }
+            }
+
             return;
         }
 
@@ -335,6 +351,8 @@ public class PlayerSelectionManager : MonoBehaviour
         };
 
         GameSession.Instance.SavePlayerSelection(selection);
+        Debug.Log($"Saved Player {slotIndex + 1} | Color={selectedColorIndices[slotIndex]}" +
+            $" | Hat={selectedHatIndices[slotIndex]} | DeviceId={assignedPads[slotIndex].deviceId}");
     }
 
     private void ChangeCurrentOption(int slotIndex, int direction)
