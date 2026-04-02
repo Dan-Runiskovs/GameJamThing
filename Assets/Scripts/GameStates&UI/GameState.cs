@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-    [SerializeField] private float _timeToPlay = 300.0f;
+    [SerializeField] private float _timeToPlay = 3.0f;
 
     [SerializeField] private KidHappinessMonitor _happinessMonitor;
     [SerializeField] private GameObject _sadTimerObject;
@@ -13,6 +13,8 @@ public class GameState : MonoBehaviour
     private float _sadTime = 0.0f;
     private float _sadTimeLimit = 10.0f;
     private bool _isSadTimeTicking = false;
+
+    [SerializeField] private OptionsManager _optionsManager;
 
     public enum GameStateEnum
     {
@@ -65,13 +67,24 @@ public class GameState : MonoBehaviour
             {
                 _sadTimerText.SetText("0!");
                 _gameState = GameStateEnum.Loss;
-               // OptionsManager(
+
+                if (_optionsManager != null)
+                {
+                    _optionsManager.TurnWinMenuOn();
+                }
             }
+            Debug.Log(_gameTimer.ToString());
         }
 
         if (_gameTimer >= _timeToPlay)
         {
+            Debug.Log("Turning on win menu");
             _gameState = GameStateEnum.Win;
+
+            if (_optionsManager != null)
+            {               
+                _optionsManager.TurnGameOverMenuOn();
+            }
         }
     }
 }
