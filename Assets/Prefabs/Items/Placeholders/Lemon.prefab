@@ -98,7 +98,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6e77a4a9fd3a4f843830cd373b0b362d, type: 2}
+  - {fileID: 2100000, guid: e24885f204d25e24680e7ef4a79e2086, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af81f773d6bbe8847898067f8453aa8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemScript
+  _isValid: 1
   _invalidMaterial: {fileID: 2100000, guid: c6f922174365edd4eab1ac0da2cdb162, type: 2}
   Type: 4
 --- !u!54 &844391061443169661
