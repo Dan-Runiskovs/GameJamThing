@@ -13,20 +13,63 @@ public class PlayerSpawner : MonoBehaviour
 
     private void Start()
     {
-        var gamepads = Gamepad.all;
+        Debug.Log("GameSession exists? " + (GameSession.Instance != null));
 
-        for (int i = 0; i < Mathf.Min(4, gamepads.Count); i++)
+        if (GameSession.Instance != null)
         {
+            Debug.Log("Saved selections count: " + GameSession.Instance.playerSelections.Count);
+        }
+
+        if (GameSession.Instance == null)
+        {
+            Debug.LogError("GameSession not found.");
+            return;
+        }
+
+        List<PlayerSelectionData> selections = GameSession.Instance.playerSelections;
+
+        for (int i = 0; i < selections.Count; i++)
+        {
+            PlayerSelectionData selection = selections[i];
+
+            Gamepad matchingPad = FindGamepadByDeviceId(selection.gamepadDeviceId);
+
+            if (matchingPad == null)
+            {
+                Debug.LogWarning($"No matching gamepad found for player {selection.playerIndex + 1}");
+                continue;
+            }
+
             PlayerInput player = PlayerInput.Instantiate(
                 playerPrefab.gameObject,
-                playerIndex: i,
-                pairWithDevice: gamepads[i]
+                playerIndex: selection.playerIndex,
+                pairWithDevice: matchingPad
             );
-            //player.currentActionMap
-            // --- Move player to spawn point ---
-            player.GetComponent<Rigidbody>().position = playerSpawnPoints[i].position;
-            player.GetComponent<Rigidbody>().rotation = playerSpawnPoints[i].rotation;
+
+            if (selection.playerIndex < playerSpawnPoints.Count)
+            {
+                player.transform.position = playerSpawnPoints[selection.playerIndex].position;
+                player.transform.rotation = playerSpawnPoints[selection.playerIndex].rotation;
+            }
+
+            PlayerAvatarVisuals avatarVisual = player.GetComponent<PlayerAvatarVisuals>();
+            if (avatarVisual != null)
+            {
+                avatarVisual.ApplySelection(selection.ratColorIndex, selection.hatIndex);
+            }
         }
+
         PlayersSpawned?.Invoke();
+    }
+
+    private Gamepad FindGamepadByDeviceId(int deviceId)
+    {
+        for (int i = 0; i < Gamepad.all.Count; i++)
+        {
+            if (Gamepad.all[i].deviceId == deviceId)
+                return Gamepad.all[i];
+        }
+
+        return null;
     }
 }

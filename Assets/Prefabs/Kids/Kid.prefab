@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &67643600038163295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5980009492123686021}
+  m_Layer: 0
+  m_Name: EyeSocket1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5980009492123686021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67643600038163295}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.100257054, y: -0.36931652, z: 0.2420424, w: 0.89161056}
+  m_LocalPosition: {x: 0.181, y: 2.042, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1164349474566180401}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 30.376}
 --- !u!1 &731226299549297840
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +61,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1993476248500258295}
+  - {fileID: 5980009492123686021}
+  - {fileID: 3309879839543445617}
   m_Father: {fileID: 1126524142485325583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1219082525624961833
@@ -356,6 +389,37 @@ MonoBehaviour:
   _balloon: {fileID: 7110471488387671152}
   _cake: {fileID: 2234564668633503604}
   _pinata: {fileID: 4877309284105721162}
+--- !u!1 &3903494792124648180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3309879839543445617}
+  m_Layer: 0
+  m_Name: EyeSocket2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3309879839543445617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903494792124648180}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.24204223, y: -0.8916095, z: 0.10025773, w: 0.36931902}
+  m_LocalPosition: {x: -0.19999999, y: 2.042, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1164349474566180401}
+  m_LocalEulerAnglesHint: {x: 0, y: -135, z: 30.376}
 --- !u!1 &4877309284105721162
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +906,9 @@ MonoBehaviour:
   _happinessLossPS: 5
   _sadMaterial: {fileID: 2100000, guid: 95a066863f2c5fa41bfc8f6097774499, type: 2}
   _happyMaterial: {fileID: 2100000, guid: 95a066863f2c5fa41bfc8f6097774499, type: 2}
+  _cryingVFXPrefab: {fileID: 8990305703454697497, guid: 72324e9ae48527b42a8dd9881c4aeb4c, type: 3}
+  _cryingVFXSpawnTransform1: {fileID: 5980009492123686021}
+  _cryingVFXSpawnTransform2: {fileID: 3309879839543445617}
 --- !u!195 &1348791053631977822
 NavMeshAgent:
   m_ObjectHideFlags: 0
