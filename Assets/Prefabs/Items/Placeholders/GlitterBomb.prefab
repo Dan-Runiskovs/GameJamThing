@@ -47,8 +47,8 @@ GameObject:
   - component: {fileID: 844391061443169661}
   - component: {fileID: 1043088026777544563}
   - component: {fileID: 4099110356379396418}
-  - component: {fileID: 170254402860169721}
   - component: {fileID: 4463583293737972467}
+  - component: {fileID: -3275691607690567264}
   m_Layer: 0
   m_Name: GlitterBomb
   m_TagString: Item
@@ -182,7 +182,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f6861a83de3924a46b1f9cd2fcf6e954, type: 3}
   - {fileID: 8300000, guid: 1102647a8f11f3e4fbaab6fd6b9377c2, type: 3}
   - {fileID: 8300000, guid: bdcdcca6b863df541a99e241cec8b248, type: 3}
---- !u!82 &170254402860169721
+--- !u!82 &4463583293737972467
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,17 +193,17 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_Resource: {fileID: 8300000, guid: fbe4a1f46caa93b42848b3426738a8d0, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 0.565
-  m_Pitch: 1
+  m_Pitch: 2
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0
-  MinDistance: 27.6
+  MinDistance: 26.4
   MaxDistance: 67.3
   Pan2D: 0
   rolloffMode: 1
@@ -279,7 +279,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &4463583293737972467
+--- !u!82 &-3275691607690567264
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -290,17 +290,17 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: fbe4a1f46caa93b42848b3426738a8d0, type: 3}
+  m_Resource: {fileID: 6418180475301049370, guid: d4cf7a08149c0734686984a5a1e93734, type: 2}
   m_PlayOnAwake: 1
   m_Volume: 0.565
-  m_Pitch: 2
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0
-  MinDistance: 26.4
+  MinDistance: 15.88
   MaxDistance: 67.3
   Pan2D: 0
   rolloffMode: 1
