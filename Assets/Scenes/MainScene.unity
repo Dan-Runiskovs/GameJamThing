@@ -1665,7 +1665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 252340035}
+  m_FirstSelected: {fileID: 1141710652}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &246807654
@@ -3563,7 +3563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &693570925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4335,9 +4335,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c2de611b122c94cbc20ea169f10d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
-  _timeToPlay: 300
+  _timeToPlay: 180
   _happinessMonitor: {fileID: 1127369775}
   _sadTimerObject: {fileID: 537119350}
+  _optionsManager: {fileID: 1421741622}
 --- !u!4 &920683370
 Transform:
   m_ObjectHideFlags: 0
@@ -7168,10 +7169,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OptionsManager
   settingsMenu: {fileID: 94552043}
-  ResultsMenu: {fileID: 0}
-  WinMenu: {fileID: 0}
-  GameOverMenu: {fileID: 0}
-  haveWon: 0
+  ResultsMenu: {fileID: 174364257}
+  WinMenu: {fileID: 161830585}
+  GameOverMenu: {fileID: 693570924}
+  SettingsButton: {fileID: 1161049167}
 --- !u!4 &1421741623
 Transform:
   m_ObjectHideFlags: 0
