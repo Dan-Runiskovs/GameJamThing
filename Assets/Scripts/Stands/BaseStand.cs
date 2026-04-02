@@ -17,15 +17,22 @@ public class BaseStand : MonoBehaviour
 
     [Header("Particle Indicators")]
     [SerializeField] GameObject _IndicatorKid;
+    [SerializeField] GameObject _IndicatorItem;
 
-    
+
+    [SerializeField] AudioSource _audioSource;
 
     public bool HasKid { get { return _kidBehaviour != null; } }
 
 
-    public void ShowIndicator(bool showIndicator) 
+    public void ShowKidIndicator(bool showIndicator) 
     {
         _IndicatorKid?.SetActive(showIndicator);
+    }
+
+    public void ShowItemIndicator(bool showIndicator)
+    {
+        _IndicatorItem?.SetActive(showIndicator);
     }
     public void PlaceItem() 
     {
@@ -39,15 +46,17 @@ public class BaseStand : MonoBehaviour
         playerObject?.GetComponent<PlayerController>().EnableMovement(false);
         Debug.Log("QTE");
         _QTE?.StartEvent(playerObject, this);
-
+       
 
 
     }
 
     public void QTESuccess() 
     {
+
         _kidBehaviour?.Satisfy();
         _kidBehaviour = null;
+        _audioSource.Play();
     }
 
 
