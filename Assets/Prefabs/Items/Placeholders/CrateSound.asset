@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-6694704280412473781
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SFX_CrateBreak_01_{-6694704280412473781}
+  m_AudioClip: {fileID: 8300000, guid: 1d396f9ded42681419c02ab80d2bf389, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5508324833884823749
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SFX_CrateBreak_04_{-5508324833884823749}
+  m_AudioClip: {fileID: 8300000, guid: f6861a83de3924a46b1f9cd2fcf6e954, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3999484702976694502
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SFX_CrateBreak_05_{-3999484702976694502}
+  m_AudioClip: {fileID: 8300000, guid: 1102647a8f11f3e4fbaab6fd6b9377c2, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-483863311400392339
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SFX_CrateBreak_06_{-483863311400392339}
+  m_AudioClip: {fileID: 8300000, guid: bdcdcca6b863df541a99e241cec8b248, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &435036312211197005
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SFX_CrateBreak_03_{435036312211197005}
+  m_AudioClip: {fileID: 8300000, guid: de918dbdf05ce6c46bf4581d5e17990e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2480741560106796891
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SFX_CrateBreak_02_{2480741560106796891}
+  m_AudioClip: {fileID: 8300000, guid: 183f3a3ddd23ea848be3b45982660807, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
 --- !u!1307931743 &6418180475301049370
 AudioRandomContainer:
   m_ObjectHideFlags: 0
@@ -15,10 +75,16 @@ AudioRandomContainer:
   m_PitchRandomizationRange: {x: 0, y: 0}
   m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
-  m_Elements: []
+  m_Elements:
+  - {fileID: -6694704280412473781}
+  - {fileID: 2480741560106796891}
+  - {fileID: 435036312211197005}
+  - {fileID: -5508324833884823749}
+  - {fileID: -3999484702976694502}
+  - {fileID: -483863311400392339}
   m_AvoidRepeatingLast: 0
   m_PlaybackMode: 0
-  m_TriggerMode: 1
+  m_TriggerMode: 0
   m_AutomaticTriggerMode: 1
   m_LoopMode: 2
   m_VolumeRandomizationEnabled: 0
