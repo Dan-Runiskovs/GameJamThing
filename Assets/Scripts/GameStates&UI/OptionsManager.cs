@@ -8,9 +8,9 @@ public class OptionsManager : MonoBehaviour
     [SerializeField] private GameObject ResultsMenu;
     [SerializeField] private GameObject WinMenu;
     [SerializeField] private GameObject GameOverMenu;
+    [SerializeField] private GameObject SettingsButton;
 
     private bool isActive = false;
-    public bool haveWon = false;
 
     private void Update()
     {
@@ -64,10 +64,14 @@ public class OptionsManager : MonoBehaviour
     {
         if (ResultsMenu != null)
         {
-            ResultsMenu.SetActive(false);
+            ResultsMenu.SetActive(true);
+            SettingsButton.SetActive(false);
 
-            if (haveWon && WinMenu != null)
+            if (WinMenu != null)
+            {
                 WinMenu.SetActive(true);
+            }
+               
         }
 
     }
@@ -75,11 +79,35 @@ public class OptionsManager : MonoBehaviour
     {
         if (ResultsMenu != null)
         {
-            ResultsMenu.SetActive(false);
+            ResultsMenu.SetActive(true);
+            SettingsButton.SetActive(false);
 
-            if (!haveWon && GameOverMenu != null)
+            if (GameOverMenu != null)
+            {
                 GameOverMenu.SetActive(true);
+            }                
         }
 
+    } 
+    public void TurnWinMenuOff()
+    {
+        if (ResultsMenu != null)
+        {         
+            if (WinMenu != null)
+            {
+                WinMenu.SetActive(false);
+            }               
+        }
+
+    }
+    public void TurnGameOverMenuOff()
+    {
+        if (ResultsMenu != null)
+        {           
+            if (GameOverMenu != null)
+            {
+                GameOverMenu.SetActive(false);
+            }                
+        }
     }
 }
