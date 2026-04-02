@@ -176,6 +176,8 @@ MonoBehaviour:
   - itemPrefab: {fileID: 7789825246184946922, guid: ba9236bd15fecaf439954a9b1eef4044, type: 3}
   - itemPrefab: {fileID: 7789825246184946922, guid: b0b0887d90076b940974349696fc3729, type: 3}
   - itemPrefab: {fileID: 7789825246184946922, guid: 757e1f372bf587e47a4f98ed841d36ec, type: 3}
+  - itemPrefab: {fileID: 7789825246184946922, guid: 3fc6f71d3c1e2e24e8a383946c1b17ad, type: 3}
+  - itemPrefab: {fileID: 7789825246184946922, guid: 387a5e52913631b48a0edb341c053f21, type: 3}
 --- !u!114 &1738481940478984708
 MonoBehaviour:
   m_ObjectHideFlags: 0
