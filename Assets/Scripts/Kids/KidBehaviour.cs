@@ -25,7 +25,8 @@ public class KidBehaviour : MonoBehaviour
     [SerializeField] private float _maxPauseAtPoint = 2.0f;
     private float _pauseUntil;
     [SerializeField] AudioSource EffectsSource;
-
+    private GameObject _cryingVFX1;
+    private GameObject _cryingVFX2;
     // Random pitch adjustment range.
     [SerializeField] float LowPitchRange = .85f;
     [SerializeField] float HighPitchRange = 1.15f;
@@ -154,8 +155,8 @@ public class KidBehaviour : MonoBehaviour
 
         if (_cryingVFXPrefab != null && _cryingVFXSpawnTransform1 != null && _cryingVFXSpawnTransform2 != null)
         {
-            Instantiate(_cryingVFXPrefab, _cryingVFXSpawnTransform1.position, Quaternion.identity, _cryingVFXSpawnTransform1);
-            Instantiate(_cryingVFXPrefab, _cryingVFXSpawnTransform2.position, Quaternion.identity, _cryingVFXSpawnTransform2);
+            _cryingVFX1 = Instantiate(_cryingVFXPrefab, _cryingVFXSpawnTransform1.position, Quaternion.identity, _cryingVFXSpawnTransform1);
+            _cryingVFX2 = Instantiate(_cryingVFXPrefab, _cryingVFXSpawnTransform2.position, Quaternion.identity, _cryingVFXSpawnTransform2);
         }
 
         _ClosestNeedsStand = GetClosestNeedsStand();
@@ -169,12 +170,28 @@ public class KidBehaviour : MonoBehaviour
 
         StopAgent(false);
         this.GetComponentInChildren<KidUIController>().StopComplaining();
+        if (_cryingVFX1 != null)
+        {
+            Destroy(_cryingVFX1);
+        }
 
+        if (_cryingVFX2 != null)
+        {
+            Destroy(_cryingVFX2);
+        }
         // --- Make kid visually happy ---
         foreach (var part in this.GetComponentsInChildren<MeshRenderer>())
         {
             if (part == null) continue;
+            if (_cryingVFX1 != null)
+{
+    Destroy(_cryingVFX1);
+}
 
+if (_cryingVFX2 != null)
+{
+    Destroy(_cryingVFX2);
+}
             part.material = _happyMaterial;
         }
     }
