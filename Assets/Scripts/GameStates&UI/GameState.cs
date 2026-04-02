@@ -65,6 +65,7 @@ public class GameState : MonoBehaviour
             {
                 _sadTimerText.SetText("0!");
                 _gameState = GameStateEnum.Loss;
+               // OptionsManager(
             }
         }
 

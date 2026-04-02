@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 public class OptionsManager : MonoBehaviour
 {
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject ResultsMenu;
+    [SerializeField] private GameObject WinMenu;
+    [SerializeField] private GameObject GameOverMenu;
 
     private bool isActive = false;
+    public bool haveWon = false;
 
     private void Update()
     {
@@ -16,7 +20,7 @@ public class OptionsManager : MonoBehaviour
         {
             if (gamepad.startButton.wasPressedThisFrame)
             {
-                if(isActive)
+                if (isActive)
                     TurnSettingsMenuOff();
                 else
                     TurnSettingsMenuOn();
@@ -54,5 +58,28 @@ public class OptionsManager : MonoBehaviour
 
         if (settingsMenu != null)
             settingsMenu.SetActive(false);
+    }
+
+    public void TurnWinMenuOn()
+    {
+        if (ResultsMenu != null)
+        {
+            ResultsMenu.SetActive(false);
+
+            if (haveWon && WinMenu != null)
+                WinMenu.SetActive(true);
+        }
+
+    }
+    public void TurnGameOverMenuOn()
+    {
+        if (ResultsMenu != null)
+        {
+            ResultsMenu.SetActive(false);
+
+            if (!haveWon && GameOverMenu != null)
+                GameOverMenu.SetActive(true);
+        }
+
     }
 }
