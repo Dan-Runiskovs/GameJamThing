@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class KidSpawner : MonoBehaviour
 {
-    [SerializeField] private int _kidsToSpwn = 10;
+    [SerializeField] private int _kidsToSpwn = 8;
     private int _kidsSpawned = 0;
 
     [SerializeField] private GameObject _kidPrefab;
