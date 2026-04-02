@@ -655,7 +655,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2e7a86078a67b11489d52bed0b3e82c7, type: 3}
   - {fileID: 8300000, guid: b5a3fc0ddcfea9f4a9715047b380448c, type: 3}
   - {fileID: 8300000, guid: 9d636803dc8094542996d8fbbee6836a, type: 3}
-  _happinessLossPS: 5
+  _happinessLossPS: 2
   _sadMaterial: {fileID: 2100000, guid: 95a066863f2c5fa41bfc8f6097774499, type: 2}
   _happyMaterial: {fileID: 2100000, guid: 95a066863f2c5fa41bfc8f6097774499, type: 2}
   _cryingVFXPrefab: {fileID: 8990305703454697497, guid: 72324e9ae48527b42a8dd9881c4aeb4c, type: 3}
