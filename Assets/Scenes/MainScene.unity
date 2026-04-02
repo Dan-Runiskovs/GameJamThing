@@ -4409,10 +4409,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c2de611b122c94cbc20ea169f10d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
-  _timeToPlay: 3
+  _timeToPlay: 300
   _happinessMonitor: {fileID: 1127369775}
   _sadTimerObject: {fileID: 537119350}
-  _optionsManager: {fileID: 1421741622}
 --- !u!4 &920683370
 Transform:
   m_ObjectHideFlags: 0
@@ -7246,10 +7245,7 @@ MonoBehaviour:
   ResultsMenu: {fileID: 0}
   WinMenu: {fileID: 0}
   GameOverMenu: {fileID: 0}
-<<<<<<< Updated upstream
   haveWon: 0
-=======
->>>>>>> Stashed changes
 --- !u!4 &1421741623
 Transform:
   m_ObjectHideFlags: 0
