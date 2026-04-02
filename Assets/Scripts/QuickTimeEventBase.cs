@@ -53,6 +53,13 @@ public class QuickTimeEventBase : MonoBehaviour
         _countdown = 0f;
         _player = player;
         _stand = stand;
+
+        Debug.Log("Success QTE");
+        _countdownActive = false;
+        _stand.QTESuccess();
+        QuitEvent();
+
+
         _UIManager = player.GetComponentInChildren<PlayerUIManager>();
         _playerActionMap = player.GetComponent<PlayerInput>().actions.FindActionMap("QTE");
         _countdownActive = true;
