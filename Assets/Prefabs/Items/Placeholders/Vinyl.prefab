@@ -44,9 +44,7 @@ GameObject:
   - component: {fileID: 2206751534166064469}
   - component: {fileID: 2370433154398757413}
   - component: {fileID: 844391061443169661}
-  - component: {fileID: 4975663125860398023}
-  - component: {fileID: -2311284034714531039}
-  - component: {fileID: -4719290678785759442}
+  - component: {fileID: 4234007271156561805}
   m_Layer: 0
   m_Name: Vinyl
   m_TagString: Item
@@ -132,41 +130,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &4975663125860398023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7789825246184946922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 738b23cd3d16d2846bc0d16f05365586, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::playCrateSound
-  CrateSounds:
-  - {fileID: 8300000, guid: 1d396f9ded42681419c02ab80d2bf389, type: 3}
-  - {fileID: 8300000, guid: 183f3a3ddd23ea848be3b45982660807, type: 3}
-  - {fileID: 8300000, guid: de918dbdf05ce6c46bf4581d5e17990e, type: 3}
-  - {fileID: 8300000, guid: f6861a83de3924a46b1f9cd2fcf6e954, type: 3}
-  - {fileID: 8300000, guid: 1102647a8f11f3e4fbaab6fd6b9377c2, type: 3}
-  - {fileID: 8300000, guid: bdcdcca6b863df541a99e241cec8b248, type: 3}
---- !u!114 &-2311284034714531039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7789825246184946922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f48b83213ad655449b511fac0745d071, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioPlayer
-  EffectsSource: {fileID: 0}
-  LowPitchRange: 0.95
-  HighPitchRange: 1.05
---- !u!82 &-4719290678785759442
+--- !u!82 &4234007271156561805
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,7 +141,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 6418180475301049370, guid: d4cf7a08149c0734686984a5a1e93734, type: 2}
   m_PlayOnAwake: 1
   m_Volume: 0.565
   m_Pitch: 1

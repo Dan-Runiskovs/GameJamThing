@@ -33,20 +33,20 @@ public class QuickTimeEventBase : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     private void Update()
     {
         if (!_countdownActive) return;
         _countdown += Time.deltaTime;
-        if (_countdown > _waitTime) 
+        if (_countdown > _waitTime)
         {
             FailEvent();
         }
     }
 
-    public void StartEvent(GameObject player, BaseStand stand) 
+    public void StartEvent(GameObject player, BaseStand stand)
     {
         if (_player != null) return;
         _EventCount = 0;
@@ -86,7 +86,7 @@ public class QuickTimeEventBase : MonoBehaviour
 
     public void QuitEvent()
     {
-        foreach (var handler in handlerList) 
+        foreach (var handler in handlerList)
         {
             _playerActionMap.FindAction("UpArrow").started -= handler;
             _playerActionMap.FindAction("DownArrow").started -= handler;
@@ -100,17 +100,17 @@ public class QuickTimeEventBase : MonoBehaviour
         _UIManager = null;
     }
 
-    public void FailEvent() 
+    public void FailEvent()
     {
         _countdownActive = false;
         QuitEvent();
         Debug.Log("Failed QTE");
-        
+
     }
 
 
 
-    private void NextEvent() 
+    private void NextEvent()
     {
         _EventCount++;
         _countdown = 0f;
@@ -131,7 +131,7 @@ public class QuickTimeEventBase : MonoBehaviour
 
     private void PressEventButton(EventButtons button)
     {
-        if (button == _EventSequence[_EventCount]) 
+        if (button == _EventSequence[_EventCount])
         {
             NextEvent();
         }
